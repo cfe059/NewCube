@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &790323564051725790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5709848690417365852}
+  - component: {fileID: 8472906414223281823}
+  m_Layer: 0
+  m_Name: Ice_Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5709848690417365852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790323564051725790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8472906414223281823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790323564051725790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc1ab574cefb4460aed1fe4a1c8b0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal_Floor:
+  - {fileID: 4623343496699127988, guid: 9675a6f766c904a19a1de92e1f306976, type: 3}
+  - {fileID: 7116621377472820332, guid: 194f5f3b3df13427f869295a5219b4a1, type: 3}
+  cantWalkable_Floor:
+  - {fileID: 8045827503124065088, guid: 258ef27efd2b64a52b6c044f3daf132c, type: 3}
+  Debuff_Floor:
+  - {fileID: 399522093818461553, guid: ff7f0a4797d26476a89ac4d1048ee78a, type: 3}
+  - {fileID: 6164241012037626071, guid: c39a8d01392d74d38938bd2666c818a0, type: 3}
+  normal_Object: []

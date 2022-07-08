@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: cd755a477cadcd047ba1e7f99b25b922
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: coin
+    100002: hp_potion
+    100004: //RootNode
+    100006: mp_potion
+    100008: treasure_box
+    100010: key
+    100012: antidote
+    100014: pill
+    100016: Group001
+    100018: mp_potion001
+    100020: Object001
+    100022: Object002
+    100024: leaf
+    100026: armor_shield
+    100028: jewel
+    400000: coin
+    400002: hp_potion
+    400004: //RootNode
+    400006: mp_potion
+    400008: treasure_box
+    400010: key
+    400012: antidote
+    400014: pill
+    400016: Group001
+    400018: mp_potion001
+    400020: Object001
+    400022: Object002
+    400024: leaf
+    400026: armor_shield
+    400028: jewel
+    2300000: coin
+    2300002: hp_potion
+    2300004: mp_potion
+    2300006: treasure_box
+    2300008: key
+    2300010: antidote
+    2300012: pill
+    2300014: mp_potion001
+    2300016: Object001
+    2300018: Object002
+    2300020: leaf
+    2300022: armor_shield
+    2300024: jewel
+    3300000: coin
+    3300002: hp_potion
+    3300004: mp_potion
+    3300006: treasure_box
+    3300008: key
+    3300010: antidote
+    3300012: pill
+    3300014: mp_potion001
+    3300016: Object001
+    3300018: Object002
+    3300020: leaf
+    3300022: armor_shield
+    3300024: jewel
+    4300000: coin
+    4300002: mp_potion
+    4300004: hp_potion
+    4300006: treasure_box
+    4300008: key
+    4300010: antidote
+    4300012: pill
+    4300014: Object001
+    4300016: mp_potion001
+    4300018: Object002
+    4300020: leaf
+    4300022: armor_shield
+    4300024: jewel
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

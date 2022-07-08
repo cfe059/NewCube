@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &538944952104994385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538944952104994391}
+  - component: {fileID: 538944952104994390}
+  m_Layer: 0
+  m_Name: BoardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &538944952104994391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538944952104994385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &538944952104994390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538944952104994385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9816a021b034b35bd4a954cad3f7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colums: 5
+  rows: 5
+  gridPosition: []
+  floorTiles:
+  - {fileID: 7532534399954771502, guid: eca82965f720f4cd7884f32e7a0c3550, type: 3}
+  - {fileID: 2603008645633473867, guid: 5182ba9d874da4a29b4f646d9b98688e, type: 3}
+  - {fileID: 2828575461075406866, guid: 6ebfd99edbe42466e8627f06eb31dafb, type: 3}
+  Conners:
+  - {fileID: 4148280613258677314, guid: b13dcc7182aa64d5b856cbd4599ba8b3, type: 3}
+  - {fileID: 6655501208336978019, guid: 494646aca71894636b97d812f7c343ce, type: 3}
+  - {fileID: 2982936560404019811, guid: 7c31a254424994d9a8da8221a68a2d47, type: 3}
+  - {fileID: 7233298329718536153, guid: 8829c5e3c96084671b419d66a3505339, type: 3}
+  Conners_Up:
+  - {fileID: 9067238497165827157, guid: a8dc7b583bee84d1291d1537ff941fc7, type: 3}
+  - {fileID: 1838084140914952878, guid: af90998f762a04377b28ba586832ce45, type: 3}
+  - {fileID: 554171299544837858, guid: e5722495dd3044d0bbab2af6585faa7a, type: 3}
+  Conners_Bottom:
+  - {fileID: 39210871191251222, guid: 015dc411c32da4373a8142b14beadbe8, type: 3}
+  - {fileID: 1375991832211931533, guid: 22fa0fcda0c7d4d5fa59a7e89c0679d4, type: 3}
+  - {fileID: 6235074906911412932, guid: 449b503e8735340b0a7bb3c7fa92b5ae, type: 3}
+  Conners_Left:
+  - {fileID: 2982486320628661693, guid: c269d8532e30a4c8da222aaa54bec08f, type: 3}
+  - {fileID: 3322437436345440105, guid: 4b45c7fd3deba462c8b5b777afa9f0b0, type: 3}
+  - {fileID: 1786646729924471119, guid: 6edd597be23d441fca75f6f134ddfa82, type: 3}
+  Conners_Right:
+  - {fileID: 7273180462950911531, guid: ddf7d1265690c4c14bbda1236a8af979, type: 3}
+  - {fileID: 4547594458399818067, guid: 3ae5c3036b60e47d9aecdbfc753ced01, type: 3}
+  - {fileID: 60858673548448396, guid: 72374b0e443e949f9b6aaab9ddca2395, type: 3}
+  wallMinimum: 0
+  wallMaximum: 0

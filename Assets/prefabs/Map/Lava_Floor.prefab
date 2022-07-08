@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3955477345702957201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8299592644684209683}
+  - component: {fileID: 5298108749540418512}
+  m_Layer: 0
+  m_Name: Lava_Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8299592644684209683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955477345702957201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5298108749540418512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955477345702957201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc1ab574cefb4460aed1fe4a1c8b0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal_Floor:
+  - {fileID: 2286408481664251276, guid: 90e86656c8ea34716aac3edd5e7b0eee, type: 3}
+  - {fileID: 7096089586028298520, guid: aa84cd42312e04e8ea99d1a6f4c4609a, type: 3}
+  cantWalkable_Floor:
+  - {fileID: 6804779318099202952, guid: c19d7f905567a44ea8f089428dbb8e75, type: 3}
+  Debuff_Floor:
+  - {fileID: 5021915605341979479, guid: ab0ea07fc221e41238837213d33c7c82, type: 3}
+  - {fileID: 6576742908496053289, guid: bc180153e32dc4faaa3dcdd7811ab15d, type: 3}
