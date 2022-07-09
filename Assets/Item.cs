@@ -7,7 +7,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     // Start is called before the first frame update
-    public ItemObjet item;
+    public ItemObject item;
 
     private void Start()
     {

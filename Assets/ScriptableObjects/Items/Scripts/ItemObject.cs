@@ -14,7 +14,7 @@ public enum ItemType
     Food,
     Money,
 }
-public class ItemObjet : ScriptableObject
+public class ItemObject : ScriptableObject
 {
     public GameObject itemPrefab;
     public string itemName;

@@ -64,25 +64,7 @@ public class Player
     public Character_Stats stats;
     public float hungry;
     public float golds;
-    public Item_Bag _itemBag ;
-    
-
-    public void AddItem(ItemObjet item,int amount)
-    {
-        bool itemExist = false;
-        // foreach (InventorySlot itemObjet in Container)
-        // {
-        //     if (itemObjet.item == item)
-        //     {
-        //         itemObjet.amount += amount;
-        //         itemExist = true;
-        //     }
-        // }
-        if (!itemExist)
-        {
-            _itemBag.ItemList.Add(new InventorySlot(item, amount));
-        }
-    }
+ 
 }
 [Serializable]
 public class Character_Stats

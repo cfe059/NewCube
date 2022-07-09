@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Armor Object", menuName = "Inventory System/Items/Armor")]
-public class ArmorObject : ItemObjet
+public class ArmorObject : ItemObject
 {
     public float def;
     private void Awake()

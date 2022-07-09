@@ -363,6 +363,7 @@
 "Assets/ScriptableObjects/Inventory/Scripts/InventoryObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/ArmorObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/FoodObject.cs"
+"Assets/ScriptableObjects/Items/Scripts/ItemDatabaseObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/ItemObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/WeaponObject.cs"
 "Assets/Scripts/Character/Flip_World.cs"
