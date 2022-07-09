@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: sword
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 7421455719120381949, guid: 5bc203321bd8b4c37b9ce56e96789b91, type: 3}
+  itemName: Sword
   ItemType: 1
   description: 
-  atk: 0
+  atk: 10

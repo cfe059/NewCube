@@ -10,12 +10,12 @@ public class PlayerBase : MonoBehaviour
     [SerializeField]
     private Player _player;
     public InventoryObject _inventory;
-    private void Start()
+
+    private void Awake()
     {
-        Debug.Log(_player._itemBag.ItemList.Count);
+        
     }
 
-    
 
     public void get_Damage(float atk)
     {
@@ -29,6 +29,7 @@ public class PlayerBase : MonoBehaviour
             var item = other.GetComponent<Item>();
             if (item)
             {
+                
                 _inventory.AddItem(item.item,1);
                 Destroy(other.gameObject);
             }
@@ -66,7 +67,22 @@ public class Player
     public Item_Bag _itemBag ;
     
 
-
+    public void AddItem(ItemObjet item,int amount)
+    {
+        bool itemExist = false;
+        // foreach (InventorySlot itemObjet in Container)
+        // {
+        //     if (itemObjet.item == item)
+        //     {
+        //         itemObjet.amount += amount;
+        //         itemExist = true;
+        //     }
+        // }
+        if (!itemExist)
+        {
+            _itemBag.ItemList.Add(new InventorySlot(item, amount));
+        }
+    }
 }
 [Serializable]
 public class Character_Stats
@@ -84,7 +100,7 @@ public class Character_Stats
 [Serializable]
 public class Item_Bag
 {
-    public List<Item_System> ItemList;
+    public List<InventorySlot> ItemList;
 }
 [Serializable]
 public class Equipment

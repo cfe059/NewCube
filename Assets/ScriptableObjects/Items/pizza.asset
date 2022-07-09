@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: pizza
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 4493247440602333706, guid: 0d61df953eab8444581a4b2bf6d22ebf, type: 3}
+  itemName: Pizza
   ItemType: 6
   description: 
   restoreAmount: 10
