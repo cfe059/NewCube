@@ -10,29 +10,55 @@ public class PlayerBase : MonoBehaviour
     [SerializeField]
     private Player _player;
     public InventoryObject _inventory;
-
+    private Item stand_item;
+    [SerializeField] private GameObject dialog;
     private void Awake()
     {
         
     }
 
+    private void Update()
+    {
+        if (stand_item != null)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                _inventory.AddItem(stand_item.item,1);
+                Destroy(stand_item.gameObject);
+            }
+            dialog.SetActive(true);
+        }
+        else
+        {
+            dialog.SetActive(false);
+        }
+    }
 
     public void get_Damage(float atk)
     {
         _player.stats.hp -= atk;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.transform.CompareTag("Item") && GetComponent<PlayerController>()._playerState != PlayerController.CharacterState.Attack)
         {
             var item = other.GetComponent<Item>();
             if (item)
             {
-                
-                _inventory.AddItem(item.item,1);
-                Destroy(other.gameObject);
+                stand_item = item;
+                //  _inventory.AddItem(item.item,1);
+                //  Destroy(other.gameObject);
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Item") &&
+            GetComponent<PlayerController>()._playerState != PlayerController.CharacterState.Attack)
+        {
+            stand_item = null;
         }
     }
 

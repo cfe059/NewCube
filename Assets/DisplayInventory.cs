@@ -12,7 +12,7 @@ public class DisplayInventory : MonoBehaviour
     public int X_SPACE_BETWEEN_ITEM;
     public int NUMBER_OF_COLUMN;
     public int Y_SPACE_BETWEEN_ITEM;
-    IDictionary<InventorySlot,GameObject> itemDisplay = new Dictionary<InventorySlot, GameObject>();
+    Dictionary<InventorySlot,GameObject> itemDisplay = new Dictionary<InventorySlot, GameObject>();
 
     private void Start()
     {
@@ -26,19 +26,18 @@ public class DisplayInventory : MonoBehaviour
 
     void UpdateDisplay()
     {
-        for (int i = 0; i < InventoryObject.Container.Count; i++)
+        for (int i = 0; i < InventoryObject.Container.Items.Count; i++)
         {
-            if(itemDisplay.ContainsKey(InventoryObject.Container[i]))
+            if(itemDisplay.ContainsKey(InventoryObject.Container.Items[i]))
             {
-                itemDisplay[InventoryObject.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container[i].amount.ToString("n0");
+                itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
             }
             else
             {
-                
-                var obj = Instantiate(InventoryObject.Container[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
+                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-                obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container[i].amount.ToString("n0");
-                itemDisplay.Add(InventoryObject.Container[i], obj);
+                obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
+                itemDisplay.Add(InventoryObject.Container.Items[i], obj);
             }
         } 
     }
@@ -46,7 +45,7 @@ public class DisplayInventory : MonoBehaviour
     void CreateDisplay()
     {
         int count = 0;
-        foreach (var item in InventoryObject.Container)
+        foreach (var item in InventoryObject.Container.Items)
         {
             var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(count);

@@ -82,6 +82,7 @@
      <Compile Include="Assets/ScriptableObjects/Items/Scripts/ItemObject.cs" />
      <Compile Include="Assets/Scripts/Character/Flip_World.cs" />
      <Compile Include="Assets/GUI Kit  - Mono Round/Scripts/PanelControlMonoRound.cs" />
+     <Compile Include="Assets/ScriptableObjects/Items/Scripts/MoneyObject.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
      <Compile Include="Assets/DisplayInventory.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" />

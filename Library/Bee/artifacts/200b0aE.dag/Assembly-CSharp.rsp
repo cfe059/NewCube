@@ -365,6 +365,7 @@
 "Assets/ScriptableObjects/Items/Scripts/FoodObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/ItemDatabaseObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/ItemObject.cs"
+"Assets/ScriptableObjects/Items/Scripts/MoneyObject.cs"
 "Assets/ScriptableObjects/Items/Scripts/WeaponObject.cs"
 "Assets/Scripts/Character/Flip_World.cs"
 "Assets/Scripts/Character/GravityCtr.cs"
