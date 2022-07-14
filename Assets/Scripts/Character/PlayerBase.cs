@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
@@ -12,13 +13,19 @@ public class PlayerBase : MonoBehaviour
     public InventoryObject _inventory;
     private Item stand_item;
     [SerializeField] private GameObject dialog;
+    [SerializeField] private GameObject gold;
     private void Awake()
     {
         
     }
 
+    
+    
     private void Update()
     {
+        if (GManager.Instance._turnBase != GManager.TurnBase.Player_Turn)
+            return;
+        
         if (stand_item != null)
         {
             if (Input.GetKey(KeyCode.E))
@@ -32,8 +39,28 @@ public class PlayerBase : MonoBehaviour
         {
             dialog.SetActive(false);
         }
+        
     }
 
+    private void FixedUpdate()
+    {
+        _player.golds = MoneyUpdate();
+        gold.GetComponent<TextMeshProUGUI>().text = $"Golds : {_player.golds}";
+    }
+
+    int MoneyUpdate()
+    {
+        int money = 0;
+        foreach (var item in _inventory.Container.Items)
+        {
+            if (item.item.ItemType == ItemType.Money)
+            {
+                money = item.amount;
+            }
+        }
+
+        return money;
+    }
     public void get_Damage(float atk)
     {
         _player.stats.hp -= atk;

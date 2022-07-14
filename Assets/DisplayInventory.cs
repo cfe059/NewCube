@@ -8,17 +8,33 @@ public class DisplayInventory : MonoBehaviour
 {
     // Start is called before the first frame update
     public InventoryObject InventoryObject;
+    public int BAG_SIZE = 10;
+    public GameObject BAG_FRAME;
     public int X_START, Y_START;
     public int X_SPACE_BETWEEN_ITEM;
     public int NUMBER_OF_COLUMN;
     public int Y_SPACE_BETWEEN_ITEM;
+    public List<GameObject> Frames;
     Dictionary<InventorySlot,GameObject> itemDisplay = new Dictionary<InventorySlot, GameObject>();
 
     private void Start()
     {
+        InventoryObject.Container = new Inventory();
+        createEmpty();
         CreateDisplay();
     }
 
+    void createEmpty()
+    {
+        for (int i = 0; i < BAG_SIZE; i++)
+        {
+            var obj = Instantiate(BAG_FRAME, Vector3.zero, Quaternion.identity, transform);
+            obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+            Frames.Add(obj);
+           // obj.GetComponent<RectTransform>().localScale = new Vector3(150, 150);
+
+        }
+    }
     private void Update()
     {
         UpdateDisplay();
@@ -34,8 +50,8 @@ public class DisplayInventory : MonoBehaviour
             }
             else
             {
-                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
-                obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,Frames[i].transform);
+                obj.GetComponent<RectTransform>().localPosition = Vector3.zero;
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
                 itemDisplay.Add(InventoryObject.Container.Items[i], obj);
             }
@@ -47,8 +63,8 @@ public class DisplayInventory : MonoBehaviour
         int count = 0;
         foreach (var item in InventoryObject.Container.Items)
         {
-            var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
-            obj.GetComponent<RectTransform>().localPosition = GetPosition(count);
+            var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,Frames[count].transform);
+            obj.GetComponent<RectTransform>().localPosition = Vector3.zero;
             obj.GetComponentInChildren<TextMeshProUGUI>().text = item.amount.ToString("n0");
             itemDisplay.Add(item,obj);
             count++;

@@ -127,10 +127,12 @@
      <None Include="Assets/Suriyun/UnityChanShader/Shader/CharaOutline.cginc" />
      <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Oswald-Bold - OFL.txt" />
      <None Include="Assets/Suriyun/UnityChanShader/Shader/Unitychan_chara_hair_ds.shader" />
+     <None Include="Assets/Fantasy Skybox FREE/Readme.txt" />
      <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Anton OFL.txt" />
      <None Include="Assets/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
+     <None Include="Assets/Fantasy Skybox FREE/ReleaseNotes.txt" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets/Suriyun/UnityChanShader/Shader/Unitychan_chara_fuku_ds.shader" />
      <None Include="Assets/Suriyun/UnityChanShader/Shader/Unitychan_chara_eyelash_blend.shader" />
