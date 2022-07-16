@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class PlayerBase : MonoBehaviour
     private Item stand_item;
     [SerializeField] private GameObject dialog;
     [SerializeField] private GameObject gold;
-    private void Awake()
+    [SerializeField] private Slider hpObj;
+    
+    private void Start()
     {
-        
+        hpObj.maxValue = _player.stats.Maxhp;
+        hpObj.value = _player.stats.hp;
     }
 
     
@@ -61,9 +65,13 @@ public class PlayerBase : MonoBehaviour
 
         return money;
     }
-    public void get_Damage(float atk)
+    public void get_Damage(GameObject other,float atk)
     {
-        _player.stats.hp -= atk;
+        float dmg = atk;
+        _player.stats.hp -= dmg;
+        DamagePopup(other,dmg);
+        hpObj.value = _player.stats.hp;
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -80,6 +88,15 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    void DamagePopup(GameObject other,float damage)
+    {
+        GameObject d = Resources.Load<GameObject>("Damage");
+        d.GetComponent<DamagePopup>().damage = (int)damage;
+        GameObject i = Instantiate(d);
+        i.transform.position = other.transform.position;
+        GetComponent<PlayerController>()._playerState = PlayerController.CharacterState.Idle;
+
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.CompareTag("Item") &&
@@ -95,16 +112,11 @@ public class PlayerBase : MonoBehaviour
         {
             return;
         }
-
+        //
         if (other.transform.CompareTag("Monster") )
         {
-            other.gameObject.GetComponent<MonsterBase>().get_Damage(_player.stats.atk);
-            GameObject d = Resources.Load<GameObject>("Damage");
-            d.GetComponent<DamagePopup>().damage = (int) _player.stats.atk;
-            GameObject i = Instantiate(d);
-            i.transform.position = other.transform.position;
-            GetComponent<PlayerController>()._playerState = PlayerController.CharacterState.Idle;
-
+            other.gameObject.GetComponent<MonsterBase>().get_Damage(this.gameObject,_player.stats.atk);
+        
         }
     }
 }
@@ -122,6 +134,7 @@ public class Player
 [Serializable]
 public class Character_Stats
 {
+    public float Maxhp;
     public float hp;
     public float atk;
     public float def;

@@ -10,9 +10,11 @@ public class MonsterBase : MonoBehaviour
     [SerializeField]
     private nodeBase node;
     
-    public void get_Damage(float atk)
+    public void get_Damage(GameObject other,float atk)
     {
-        monster.hp -= atk;
+        float dmg = atk;
+        monster.hp -= dmg;
+        DamagePopup(other,dmg);
     }
     private void FixedUpdate()
     {
@@ -34,8 +36,16 @@ public class MonsterBase : MonoBehaviour
             node = other.gameObject.GetComponent<nodeBase>();
         }    }
 
-    
 
+    void DamagePopup(GameObject other,float dmg)
+    {
+        GameObject d = Resources.Load<GameObject>("Damage");
+        d.GetComponent<DamagePopup>().damage = (int) dmg;
+        GameObject i = Instantiate(d);
+        i.transform.position = other.transform.position;
+        GetComponent<MonsterMovement>()._characterState = PlayerController.CharacterState.Idle;
+
+    }
     private void OnCollisionEnter(Collision other)
     {
         if (GetComponent<MonsterMovement>()._characterState != PlayerController.CharacterState.Attack)
@@ -44,13 +54,13 @@ public class MonsterBase : MonoBehaviour
         }
         if (other.transform.CompareTag("Player") )
         {
-            other.gameObject.GetComponent<PlayerBase>().get_Damage(monster.atk);
-            GameObject d = Resources.Load<GameObject>("Damage");
-            d.GetComponent<DamagePopup>().damage = (int) monster.atk;
-            GameObject i = Instantiate(d);
-            i.transform.position = other.transform.position;
-            GetComponent<MonsterMovement>()._characterState = PlayerController.CharacterState.Idle;
-
+            other.gameObject.GetComponent<PlayerBase>().get_Damage(this.gameObject,monster.atk);
+            // GameObject d = Resources.Load<GameObject>("Damage");
+            // d.GetComponent<DamagePopup>().damage = (int) monster.atk;
+            // GameObject i = Instantiate(d);
+            // i.transform.position = other.transform.position;
+            // GetComponent<MonsterMovement>()._characterState = PlayerController.CharacterState.Idle;
+        
         }
     }
 }
