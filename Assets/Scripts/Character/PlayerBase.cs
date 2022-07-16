@@ -13,10 +13,11 @@ public class PlayerBase : MonoBehaviour
     private Player _player;
     public InventoryObject _inventory;
     private Item stand_item;
-    [SerializeField] private GameObject dialog;
+    [SerializeField] private GameObject dialogPickup;
+    [SerializeField] private GameObject dialogMove;
     [SerializeField] private GameObject gold;
     [SerializeField] private Slider hpObj;
-    
+    [SerializeField] private GameObject bag;
     private void Start()
     {
         hpObj.maxValue = _player.stats.Maxhp;
@@ -28,24 +29,56 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         if (GManager.Instance._turnBase != GManager.TurnBase.Player_Turn)
+        {
+            dialogMove.SetActive(false);
+            dialogPickup.SetActive(false);
             return;
-        
-        if (stand_item != null)
+        }
+        dialogMove.SetActive(true);
+        dialogPickup.SetActive(true);
+
+        if (Input.GetKey(KeyCode.E))
         {
-            if (Input.GetKey(KeyCode.E))
+            if (stand_item != null &&  (_inventory.Container.Items.Count < 9))
             {
-                _inventory.AddItem(stand_item.item,1);
-                Destroy(stand_item.gameObject);
+
+                _inventory.AddItem(stand_item.item, 1);
+                GManager.Instance.Logger($"{stand_item.GetComponent<Item>().item.itemName}を発見！鞄にしまった。");
+                ForceTurnChange();
+                moveToBag(stand_item.gameObject);
+                //Destroy(stand_item.gameObject);
             }
-            dialog.SetActive(true);
+            else if( _inventory.Container.Items.Count >= 9)
+            {
+                ForceTurnChange();
+                GManager.Instance.Logger($"足元を調べた。{stand_item.GetComponent<Item>().item.itemName}を発見！しかし鞄がいっぱいだった…。");
+ 
+            }
+            else
+            {
+                ForceTurnChange();
+                GManager.Instance.Logger($"足元を調べた。しかし何も見つからなかった。");
+
+            }
+
         }
-        else
-        {
-            dialog.SetActive(false);
-        }
-        
+
+
     }
 
+    void moveToBag(GameObject obj)
+    {
+        obj.transform.DOMove(bag.transform.position, 1f)
+            .OnComplete(() =>
+            {
+                Destroy(obj);
+            })
+            .Play();
+    }
+    void ForceTurnChange()
+    {
+        GManager.Instance._turnBase = GManager.TurnBase.Monster_Turn;
+    }
     private void FixedUpdate()
     {
         _player.golds = MoneyUpdate();
@@ -67,9 +100,12 @@ public class PlayerBase : MonoBehaviour
     }
     public void get_Damage(GameObject other,float atk)
     {
+        Debug.Log(other.name);
         float dmg = atk;
         _player.stats.hp -= dmg;
-        DamagePopup(other,dmg);
+        DamagePopup(dmg);
+        GManager.Instance.Logger($"{other.name} が攻撃してきた。{dmg}のダメージを受けた！");
+        //GManager.Instance.Logger($"{other.name} から{dmg}のダメージを受けた！");
         hpObj.value = _player.stats.hp;
 
     }
@@ -88,12 +124,12 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    void DamagePopup(GameObject other,float damage)
+    void DamagePopup(float damage)
     {
         GameObject d = Resources.Load<GameObject>("Damage");
         d.GetComponent<DamagePopup>().damage = (int)damage;
         GameObject i = Instantiate(d);
-        i.transform.position = other.transform.position;
+        i.transform.position = this.transform.position;
         GetComponent<PlayerController>()._playerState = PlayerController.CharacterState.Idle;
 
     }

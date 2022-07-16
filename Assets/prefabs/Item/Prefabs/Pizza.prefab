@@ -51,6 +51,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2995501730032911068, guid: 6bbc6bdfcbac049aa8a7248b4d2e399f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995501730032911068, guid: 6bbc6bdfcbac049aa8a7248b4d2e399f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995501730032911068, guid: 6bbc6bdfcbac049aa8a7248b4d2e399f, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2995501730032911069, guid: 6bbc6bdfcbac049aa8a7248b4d2e399f, type: 3}
       propertyPath: m_Name
       value: Pizza

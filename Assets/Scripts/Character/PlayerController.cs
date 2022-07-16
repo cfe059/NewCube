@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
     }
     void LookAtWhenWalk(string direction)
     {
-        Debug.Log(direction);
         
         switch (direction)
         {
@@ -229,7 +228,7 @@ public class PlayerController : MonoBehaviour
 
                     if (isMoving)
                     {
-                        GManager.Instance.Logger($"Player : 移動　X:{transform.position.x} Y:{transform.position.y} Z:{transform.position.z}");
+                        //GManager.Instance.Logger($"Player : 移動　X:{(int)transform.position.x} Y:{(int)transform.position.y} Z:{(int)transform.position.z}");
                     }
 
                 }

@@ -353,6 +353,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/3D Cartoon RPG Set/Scripts/ItemRotate.cs"
+"Assets/BagOpen.cs"
 "Assets/DamagePopup.cs"
 "Assets/DisplayInventory.cs"
 "Assets/GManager.cs"

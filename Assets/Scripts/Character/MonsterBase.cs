@@ -9,19 +9,26 @@ public class MonsterBase : MonoBehaviour
     public Monster_Data monster;
     [SerializeField]
     private nodeBase node;
-    
+
+    [SerializeField] private Collider _collider;
     public void get_Damage(GameObject other,float atk)
     {
         float dmg = atk;
         monster.hp -= dmg;
-        DamagePopup(other,dmg);
+        DamagePopup(dmg);
+        GManager.Instance.Logger($"{other.name} が攻撃した。{dmg}のダメージを与えた！");
+        //GManager.Instance.Logger($"{this.name} に{dmg}のダメージを与えた！");
+
+
     }
     private void FixedUpdate()
     {
         if (monster.hp <= 0)
         {
             transform.parent.parent.GetComponent<nodeActive>().Monsters.Remove(this.gameObject);
-            GetComponent<Collider>().enabled = false;
+            this.tag = "DeadMonster";
+            _collider.enabled = false;
+           // GetComponentInChildren<Collider>().enabled = false;
             node.resetNodeStatus();
             Destroy(gameObject);
 
@@ -37,16 +44,16 @@ public class MonsterBase : MonoBehaviour
         }    }
 
 
-    void DamagePopup(GameObject other,float dmg)
+    void DamagePopup(float dmg)
     {
         GameObject d = Resources.Load<GameObject>("Damage");
         d.GetComponent<DamagePopup>().damage = (int) dmg;
         GameObject i = Instantiate(d);
-        i.transform.position = other.transform.position;
+        i.transform.position = this.transform.position;
         GetComponent<MonsterMovement>()._characterState = PlayerController.CharacterState.Idle;
 
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionExit(Collision other)
     {
         if (GetComponent<MonsterMovement>()._characterState != PlayerController.CharacterState.Attack)
         {

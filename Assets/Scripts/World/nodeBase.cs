@@ -23,6 +23,7 @@ public class nodeBase : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (_nodeStatus == nodeStatus.cantWalkable || _nodeStatus == nodeStatus.Enemy)
         {
             int unwalkable = LayerMask.NameToLayer("Unwalkable");
@@ -54,7 +55,9 @@ public class nodeBase : MonoBehaviour
             case "Item":
                 _nodeStatus = nodeStatus.Item;
                 break;
-            
+            case "DeadMonster":
+                _nodeStatus = nodeStatus.None;
+                break;
         }
     }
     

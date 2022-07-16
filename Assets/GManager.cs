@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,7 +26,9 @@ public class GManager : MonoBehaviour
     private List<GameObject> _listLogger= new List<GameObject>();
     [SerializeField]
     private GameObject _days;
-    
+
+    [SerializeField] private GameObject bgDay;
+    [SerializeField] private GameObject bgNight;
     void Awake()
     {
         Instance = this;
@@ -63,14 +66,19 @@ public class GManager : MonoBehaviour
     }
     public void Change_TurnBase(TurnBase turnBase)
     {
-        _turnBase = turnBase;
-        Logger($"ターン変更　：　{turnBase}");
+        _turnBase = turnBase; 
+        //Logger($"ターン変更　：　{turnBase}");
     }
     
     public void Change_TimeBase()
     {
         if (_GameState.time_days)
         {
+            bgNight.GetComponent<SpriteRenderer>().DOFade(0,1f).SetDelay(0.8f)
+                .Play();
+            bgDay.GetComponent<SpriteRenderer>().DOFade(1, 1f).SetDelay(0.8f)
+                .Play();
+
             _GameState.time_days = false;
             _GameState.days += 1;
             Days_Change(_GameState.days);
@@ -80,7 +88,10 @@ public class GManager : MonoBehaviour
         {
             _GameState.time_days = true;
             
-
+            bgDay.GetComponent<SpriteRenderer>().DOFade(0,1f).SetDelay(0.8f)
+                .Play();
+            bgNight.GetComponent<SpriteRenderer>().DOFade(1, 1f).SetDelay(0.8f)
+                .Play();
         }
     }
 }

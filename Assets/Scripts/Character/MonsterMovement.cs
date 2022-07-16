@@ -291,7 +291,7 @@ public class MonsterMovement : MonoBehaviour
 
                 break;
         }
-        GManager.Instance.Logger($"{gameObject.name} : 移動 X:{target.x} Y:{target.y} Z:{target.z}");
+        //GManager.Instance.Logger($"{gameObject.name} : 移動 X:{target.x} Y:{target.y} Z:{target.z}");
         
     }
 

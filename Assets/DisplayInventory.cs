@@ -20,7 +20,7 @@ public class DisplayInventory : MonoBehaviour
     private void Start()
     {
         InventoryObject.Container = new Inventory();
-        createEmpty();
+        //createEmpty();
         CreateDisplay();
     }
 
@@ -50,8 +50,8 @@ public class DisplayInventory : MonoBehaviour
             }
             else
             {
-                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,Frames[i].transform);
-                obj.GetComponent<RectTransform>().localPosition = Vector3.zero;
+                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
+                obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
                 itemDisplay.Add(InventoryObject.Container.Items[i], obj);
             }

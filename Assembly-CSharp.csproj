@@ -119,6 +119,7 @@
      <Compile Include="Assets/ScriptableObjects/Items/Scripts/FoodObject.cs" />
      <Compile Include="Assets/Suriyun/Fantasy Customizable Pack/CharacterParts/Scripts/WeaponDamageLaunchTransform.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
+     <Compile Include="Assets/BagOpen.cs" />
      <None Include="Assets/Suriyun/UnityChanShader/Shader/Unitychan_chara_fuku.shader" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
