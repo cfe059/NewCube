@@ -222,6 +222,12 @@ public class PlayerBase : MonoBehaviour
                 total_atk += _player.Equipment.weapon.atk;
             }
 
+            if (_player.Equipment.Armor != null)
+            {
+                total_atk += _player.Equipment.Armor.atk;
+
+            }
+
             total_atk += _player.stats.atk;
             other.gameObject.GetComponent<MonsterBase>().get_Damage(this.gameObject,total_atk);
         

@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08262e771868d49aa8e92c1039ba56d3, type: 3}
-  m_Name: pizza
+  m_Script: {fileID: 11500000, guid: 6485718c87c234e81869a55d3cd0f4a7, type: 3}
+  m_Name: 20001
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 4493247440602333706, guid: 0d61df953eab8444581a4b2bf6d22ebf, type: 3}
-  itemName: Pizza
-  ItemType: 6
+  ID: 20001
+  itemData: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  itemName: 
+  ItemType: 2
   description: 
-  restoreAmount: 10
+  def: 0

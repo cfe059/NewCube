@@ -11,4 +11,11 @@ public class ArmorObject : ItemObject
     {
         this.ItemType = ItemType.Armor;
     }
+
+    private void OnEnable()
+    {
+        itemData = Resources.Load<NewItem>($"Items/Data/{ID}");
+        itemName = itemData.name;
+        itemPrefab = Resources.Load<GameObject>($"Items/Display/{ID}");
+    }
 }

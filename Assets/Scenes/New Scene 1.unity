@@ -971,6 +971,9 @@ MonoBehaviour:
   - {fileID: 7866670203061732532, guid: 003d00589c04b491294cef09b5fe4ad9, type: 3}
   Items:
   - {fileID: 2819320961207466762, guid: a2934fb13bd064ebead60a4843d4db6a, type: 3}
+  - {fileID: 2819320961207466762, guid: 91401e4f781e940159ea64d657a40a72, type: 3}
+  - {fileID: 2819320961207466762, guid: adad9ebca9a11458cb69c7a4ea24f8b4, type: 3}
+  - {fileID: 2819320961207466762, guid: 75ccc9edc125a4524bf06ce6c8972b91, type: 3}
   floors:
   - {fileID: 8472906414223281823, guid: f9f91954ca8a24712900a65ab7f9dbbc, type: 3}
   - {fileID: 5298108749540418512, guid: 27a307e491c16490cb6d2d8285f8ec74, type: 3}
