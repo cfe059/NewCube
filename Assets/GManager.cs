@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class GManager : MonoBehaviour
 {
     public static GManager Instance;
@@ -14,6 +15,7 @@ public class GManager : MonoBehaviour
     {
         Player_Turn,Player_Moving,Monster_Turn,Monster_Moving
     }
+
     public GameState _GameState;
     public TurnBase _turnBase;
     public bool MonsterMove;
@@ -26,25 +28,33 @@ public class GManager : MonoBehaviour
     private List<GameObject> _listLogger= new List<GameObject>();
     [SerializeField]
     private GameObject _days;
-
+    
     [SerializeField] private GameObject bgDay;
     [SerializeField] private GameObject bgNight;
+    [SerializeField] public List<LevelMaster> _levelMaster;
+    [SerializeField] private TextMeshProUGUI _levelText;
     void Awake()
     {
         Instance = this;
     }
-
+    
     private void Start()
     {
         Days_Change(_GameState.days);
+        _levelMaster = GetComponent<CSVReader>()._LevelData;
+
     }
 
+    public void ChangeLevel(int level)
+    {
+        _levelText.text = $"Lvl.{level}";
+    }
     public void Logger(string log)
     {
         Game_Log.Add(log);
         TextLogger(log);
     }
-
+    
     void Days_Change(int day)
     {
         _days.GetComponent<TextMeshProUGUI>().text = $"{day} 日";

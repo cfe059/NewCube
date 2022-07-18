@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,10 +7,14 @@ using UnityEngine;
 
 public class CSVReader : MonoBehaviour
 {
-    private TextAsset _csv;
-    public List<string[]> _csvDatas = new List<string[]>();
+    private TextAsset _csvItem;
+    private TextAsset _csvLevel;
+    private TextAsset _csvStats;
+    
+//    public List<string[]> _csvDatas = new List<string[]>();
 
     public List<Item_System> _itemSystem;
+    public List<LevelMaster> _LevelData;
     // Start is called before the first frame update
     //_csv Data :: _csvDatas[x][0] == ID
     //_csv Data :: _csvDatas[x][1] == ItemName
@@ -25,8 +30,38 @@ public class CSVReader : MonoBehaviour
     
     void Awake()
     {
-        _csv = Resources.Load<TextAsset>("Data/item_data");
-        StringReader reader = new StringReader(_csv.text);
+        LevelDataRead();
+    }
+
+    void LevelDataRead()
+    { 
+        List<string[]> _csvDatas = new List<string[]>();
+
+        _csvItem = Resources.Load<TextAsset>("Data/gyakun_level_master");
+        StringReader reader = new StringReader(_csvItem.text);
+        
+        while (reader.Peek() != -1) 
+        {
+            string line = reader.ReadLine();
+            _csvDatas.Add(line.Split(','));
+        }
+
+        for (int i = 1; i < _csvDatas.Count; i++)
+        {
+            LevelMaster lvl = new LevelMaster();
+            lvl.Level = int.Parse(_csvDatas[i][0]);
+            lvl.NextExp = int.Parse(_csvDatas[i][1]);
+            lvl.TotalExptoNext = int.Parse(_csvDatas[i][2]);
+            _LevelData.Add(lvl);
+        }
+        
+    }
+    void ItemRead()
+    {
+        List<string[]> _csvDatas = new List<string[]>();
+
+        _csvItem = Resources.Load<TextAsset>("Data/item_data");
+        StringReader reader = new StringReader(_csvItem.text);
         
         while (reader.Peek() != -1) 
         {
@@ -56,10 +91,16 @@ public class CSVReader : MonoBehaviour
             _itemSystem.Add(item);
         }
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
+}
+[Serializable]
+public class LevelMaster
+{
+    public int Level;
+    public int NextExp;
+    public int TotalExptoNext;
 }

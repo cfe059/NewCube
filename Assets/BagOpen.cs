@@ -7,6 +7,9 @@ public class BagOpen : MonoBehaviour
 {
     // Start is called before the first frame updateublip
     [SerializeField] private GameObject panel;
+    /// <summary>
+    /// カバンクリックされる時のアニメション
+    /// </summary>
     public void Bag_Click()
     {
         if (panel.activeSelf)

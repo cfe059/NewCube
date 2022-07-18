@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class MonsterBase : MonoBehaviour
@@ -19,23 +20,34 @@ public class MonsterBase : MonoBehaviour
         GManager.Instance.Logger($"{other.name} が攻撃した。{dmg}のダメージを与えた！");
         //GManager.Instance.Logger($"{this.name} に{dmg}のダメージを与えた！");
 
-
+        if (Death())
+        {
+            other.GetComponent<PlayerBase>().getExp(10);
+            Destroy(this.gameObject);
+        }
     }
     private void FixedUpdate()
+    {
+        
+       
+    }
+
+    bool Death()
     {
         if (monster.hp <= 0)
         {
             transform.parent.parent.GetComponent<nodeActive>().Monsters.Remove(this.gameObject);
             this.tag = "DeadMonster";
             _collider.enabled = false;
-           // GetComponentInChildren<Collider>().enabled = false;
+            // GetComponentInChildren<Collider>().enabled = false;
             node.resetNodeStatus();
+            return true;
             Destroy(gameObject);
-
+            
         }
-       
-    }
 
+        return false;
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Node"))

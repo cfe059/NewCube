@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Inventory")]
-public class InventoryObject : ScriptableObject//,ISerializationCallbackReceiver
+public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
 {
     public string savePath = "";
     public ItemDatabaseObject database;
@@ -47,15 +47,15 @@ public class InventoryObject : ScriptableObject//,ISerializationCallbackReceiver
     //     //set up functionality for full inventory
     //     return null;
     // }
-    // public void OnAfterDeserialize()
-    // {
-    //     for (int i = 0; i < Container.Count; i++)
-    //         Container[i].item = database.getItem[Container[i].ID];
-    // }
+    public void OnAfterDeserialize()
+    {
+        for (int i = 0; i < Container.Items.Count; i++)
+            Container.Items[i].item = database.getItem[Container.Items[i].ID];
+    }
     //
-    // public void OnBeforeSerialize()
-    // {
-    // }
+    public void OnBeforeSerialize()
+    {
+    }
 
     void Save()
     {

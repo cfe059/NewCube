@@ -24,6 +24,7 @@ public class Flip_World : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
         if (!_controller.isMoving)

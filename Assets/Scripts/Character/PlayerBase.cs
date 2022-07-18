@@ -22,6 +22,7 @@ public class PlayerBase : MonoBehaviour
     {
         hpObj.maxValue = _player.stats.Maxhp;
         hpObj.value = _player.stats.hp;
+        GManager.Instance.ChangeLevel(_player.Level);
     }
 
     
@@ -66,6 +67,29 @@ public class PlayerBase : MonoBehaviour
 
     }
 
+    public void getExp(int exp)
+    {
+        _player.exp += exp;
+        if (LevelUp())
+        {
+            GManager.Instance.ChangeLevel(_player.Level);
+            //effect
+        }
+    }
+
+    bool LevelUp()
+    {
+        LevelMaster _level = GManager.Instance._levelMaster[_player.Level - 1];
+
+        if (_player.exp >= _level.NextExp)
+        {
+            _player.Level += 1;
+            _player.exp -= _level.NextExp;
+            return true;
+        }
+
+        return false;
+    }
     void moveToBag(GameObject obj)
     {
         obj.transform.DOMove(bag.transform.position, 1f)
@@ -161,7 +185,7 @@ public class PlayerBase : MonoBehaviour
 public class Player
 {
     public int Level;
-    public float exp;
+    public int exp;
     public Character_Stats stats;
     public float hungry;
     public float golds;
