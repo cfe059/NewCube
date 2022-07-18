@@ -17,11 +17,15 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private GameObject dialogMove;
     [SerializeField] private GameObject gold;
     [SerializeField] private Slider hpObj;
+    [SerializeField] private Slider expObj;
     [SerializeField] private GameObject bag;
     private void Start()
     {
         hpObj.maxValue = _player.stats.Maxhp;
+        expObj.maxValue = 10;
         hpObj.value = _player.stats.hp;
+        expObj.value = _player.exp;
+//        expObj.maxValue = GManager.Instance._levelMaster[_player.Level-1].NextExp;
         GManager.Instance.ChangeLevel(_player.Level);
     }
 
@@ -70,11 +74,24 @@ public class PlayerBase : MonoBehaviour
     public void getExp(int exp)
     {
         _player.exp += exp;
-        if (LevelUp())
-        {
-            GManager.Instance.ChangeLevel(_player.Level);
-            //effect
-        }
+
+        expObj
+            .DOValue(_player.exp,0.5f)
+            .OnComplete(() =>
+            {
+                if (LevelUp())
+                {
+                    expObj
+                        .DOValue(_player.exp,0.5f)
+                        .Play();
+                    GManager.Instance.ChangeLevel(_player.Level);
+                    expObj.maxValue = GManager.Instance._levelMaster[_player.Level - 1].NextExp;
+                    //effect
+                }
+            })
+            .Play();
+        
+        
     }
 
     bool LevelUp()
@@ -85,6 +102,7 @@ public class PlayerBase : MonoBehaviour
         {
             _player.Level += 1;
             _player.exp -= _level.NextExp;
+            
             return true;
         }
 
