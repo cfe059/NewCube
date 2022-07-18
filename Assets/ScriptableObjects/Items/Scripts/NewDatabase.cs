@@ -36,11 +36,11 @@ public class NewDatabase : ScriptableObject
             {
                 item._ItemType = ItemType.Armor;
             }
-            item.name = _csvDatas[i][1].ToString();
+            item._name = _csvDatas[i][1].ToString();
             item.atk = int.Parse(_csvDatas[i][2]);
             item.def = int.Parse(_csvDatas[i][3]);
             
-            AssetDatabase.CreateAsset(item,$"Assets/Resources/Items/{item.ID}.asset");
+            AssetDatabase.CreateAsset(item,$"Assets/Resources/Items/Data/{item.ID}.asset");
         }
         AssetDatabase.SaveAssets();
     }

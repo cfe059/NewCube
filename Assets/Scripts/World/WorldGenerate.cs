@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class WorldGenerate : MonoBehaviour
@@ -14,12 +16,13 @@ public class WorldGenerate : MonoBehaviour
     public int WallMaximum;
     public Vector2 ItemRange;
     public GameObject[] monster;
-    public GameObject[] Items;
+    public List<GameObject> Items;
     public Floor_Steup [] floors;
+    
     
     void Start()
     {
-        
+        AddcanSpawnItem();
         foreach (var face in _Faces)
         {
             _nodeActives.Add(face.GetComponent<nodeActive>());
@@ -29,11 +32,35 @@ public class WorldGenerate : MonoBehaviour
         {
             RandomWorld(node);
         }
+
         
     }
 
+    void AddcanSpawnItem()
+    {
+        List<GameObject> objs = new List<GameObject>();
+        
+        
+        foreach (var canSpawn in GManager.Instance._canSpawns)
+        {
+            //Debug.Log(canSpawn.ID);
+            objs.Add(Resources.Load<GameObject>($"Items/Prefabs/{canSpawn.ID}"));
+        
+        }
+
+        Items = objs;
+    }
+    // GameObject ItemtoObject(int _ID)
+    // {
+    //     
+    //     GameObject obj = Resources.Load<GameObject>($"Items/Prefabs/{_ID}");
+    //     obj.GetComponent<Item>().RName = "";
+    //     obj.GetComponent<Item>().itemImg = Resources.Load<Sprite>($"Items/item_icon_kari/{_ID}");
+    //     return obj;
+    // }
     void RandomWorld(nodeActive node)
     {
+        AddcanSpawnItem();
         int floor_num = Random.Range(0, floors.Length);
         ObjectGenerator(node, floors[floor_num].cantWalkable_Floor, 
             WallMinimum, WallMaximum,nodeBase.nodeStatus.cantWalkable,node.parentFloor.transform); 
@@ -41,8 +68,8 @@ public class WorldGenerate : MonoBehaviour
             WallMinimum, WallMaximum,nodeBase.nodeStatus.Debuff,node.parentFloor.transform);      
         PlaceAllFloor(node,floor_num);
         ObjectGenerator(node, monster, MonsterMinimum, MonsterMaximum,nodeBase.nodeStatus.Enemy,node.parentMonster.transform,layername:"Unwalkable");
-        ObjectGenerator(node, Items, (int)ItemRange.x, (int)ItemRange.y,nodeBase.nodeStatus.Item,node.parentItems.transform,layername:"Walkable");
-
+        ObjectGenerator(node, Items.ToArray(), (int)ItemRange.x, (int)ItemRange.y,nodeBase.nodeStatus.Item,node.parentItems.transform,layername:"Walkable");
+        
         node.parentFloor.transform.localPosition += new Vector3(0f, 0f, 0.49f);      
 
     }

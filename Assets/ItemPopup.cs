@@ -19,7 +19,7 @@ public class ItemPopup : MonoBehaviour
         {
             GameObject obj = Instantiate(itemPopup,Vector3.zero,Quaternion.identity, FrameitemPopup.transform).gameObject;
             obj.GetComponent<RectTransform>().localPosition = new Vector3();
-            text.text = $"{itemData.name}を装備しますか？";
+            text.text = $"{itemData.R_Data.RName}を装備しますか？";
         }
     }
 

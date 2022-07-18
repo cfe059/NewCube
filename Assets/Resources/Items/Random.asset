@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6aa0eea2194683818404f38af577b4, type: 3}
+  m_Name: Random
+  m_EditorClassIdentifier: 
+  _csvItem: {fileID: 4900000, guid: fcd11a0dcca33444189523dc50a7f25f, type: 3}
+  weapon:
+  - ID: 1000001
+    RName: "\u9306\u3073\u305F\u5305\u4E01"
+    Rimg: item_1001
+  - ID: 1000002
+    RName: "\u30B9\u30A4\u30AB\u30D0\u30FC"
+    Rimg: item_1002
+  - ID: 1000003
+    RName: "\u30CA\u30A4\u30D5"
+    Rimg: item_1003
+  - ID: 1000004
+    RName: "\u7530\u4E2D\u306E\u5200"
+    Rimg: item_1004
+  - ID: 1000005
+    RName: "\u5927\u6839\u30D6\u30EC\u30FC\u30C9"
+    Rimg: item_1005
+  - ID: 1000006
+    RName: "\u30D4\u30AB\u30D4\u30AB\u30BB\u30A4\u30D0\u30FC"
+    Rimg: item_1006
+  armor:
+  - ID: 2000001
+    RName: "UNI\u3007L\u3007\u30D1\u30FC\u30AB\u30FC"
+    Rimg: item_2001
+  - ID: 2000002
+    RName: "\u304A\u6C17\u306B\u5165\u308A\u306E\u30D1\u30B8\u30E3\u30DE"
+    Rimg: item_2002
+  - ID: 2000003
+    RName: "\u8D64\u3044\u30ED\u30FC\u30D6"
+    Rimg: item_2003
+  - ID: 2000004
+    RName: "\u6C34\u8272\u306E\u30ED\u30FC\u30D6"
+    Rimg: item_2004
+  - ID: 2000005
+    RName: "\u30C8\u30B2\u30C8\u30B2\u306E\u93A7"
+    Rimg: item_2005
+  - ID: 2000006
+    RName: "\u30BB\u30AF\u30B7\u30FC\u306A\u670D"
+    Rimg: item_2006

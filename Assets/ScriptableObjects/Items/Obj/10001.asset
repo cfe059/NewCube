@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10001
   itemData: {fileID: 11400000, guid: 180dbd75401184424aad850d9c0d291b, type: 2}
-  itemPrefab: {fileID: 8496587485857328068, guid: 699e65220dbbf4a68997dee1da64a0cb, type: 3}
-  itemName: "\u306A\u307E\u304F\u3089\u30BD\u30FC\u30C9"
+  itemPrefab: {fileID: 6124330210379764610, guid: bf4c377188d0c4d23bc6eaffb730119f, type: 3}
+  itemName: "\u306A\u307E\u304F\u3089\u306E\u5263"
   ItemType: 1
   description: 
+  rData:
+    ID: 0
+    RName: 
+    Rimg: 
   atk: 0

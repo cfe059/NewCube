@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10001
   _ItemType: 1
-  name: "\u306A\u307E\u304F\u3089\u30BD\u30FC\u30C9"
+  _name: "\u306A\u307E\u304F\u3089\u306E\u5263"
   atk: 5
   def: 0

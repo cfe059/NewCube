@@ -12,29 +12,36 @@ public class itemClick : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
 
     public bool isEquip;
     // Start is called before the first frame update
-    private NewItem Itemdata;
+    
+     private NewItem Itemdata;
+    
     private void Start()
     {
         Regex regexObj = new Regex(@"[^\d]");
         string iD = regexObj.Replace(name, "");
         Itemdata = Resources.Load<NewItem>($"Items/Data/{iD}");
-        
+        GetComponent<Image>().sprite = Resources.Load<Sprite>($"Items/item_icon_kari/{Itemdata.R_Data.Rimg}");
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"want to use {Itemdata.name}");
-        ItemPopup popup = canvasPopup.GetComponent<ItemPopup>();
-        popup._ItemDataClick = GetComponent<itemClick>();
-        popup.itemData = Itemdata;
-        popup.itemPopup = GetComponent<Image>();
-        Instantiate(popup);
+        if (Itemdata._ItemType == ItemType.Weapon || Itemdata._ItemType == ItemType.Armor)
+        {
+            Debug.Log($"want to use {Itemdata.R_Data.RName}");
+            ItemPopup popup = canvasPopup.GetComponent<ItemPopup>();
+            popup._ItemDataClick = GetComponent<itemClick>();
+            popup.itemData = Itemdata;
+            popup.itemPopup = GetComponent<Image>();
+            Instantiate(popup);
 
+        }
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(Itemdata.name);
+        Debug.Log(Itemdata.R_Data.RName);
         
        // Debug.Log($"want to use {Itemdata.name}");
     }

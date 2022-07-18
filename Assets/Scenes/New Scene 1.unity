@@ -964,14 +964,12 @@ MonoBehaviour:
   MonsterMaximum: 2
   WallMinimum: 3
   WallMaximum: 4
-  ItemRange: {x: 4, y: 4}
+  ItemRange: {x: 5, y: 6}
   monster:
   - {fileID: 7866670203061732532, guid: 7c4e31ad06816453fbc9e893db7005e8, type: 3}
   - {fileID: 7866670203061732532, guid: 7f06ed0d2ab194c2bb6c656fdd6d8def, type: 3}
   - {fileID: 7866670203061732532, guid: 003d00589c04b491294cef09b5fe4ad9, type: 3}
   Items:
-  - {fileID: 2819320961207466762, guid: a2934fb13bd064ebead60a4843d4db6a, type: 3}
-  - {fileID: 2819320961207466762, guid: 91401e4f781e940159ea64d657a40a72, type: 3}
   - {fileID: 2819320961207466762, guid: adad9ebca9a11458cb69c7a4ea24f8b4, type: 3}
   - {fileID: 2819320961207466762, guid: 75ccc9edc125a4524bf06ce6c8972b91, type: 3}
   floors:
@@ -979,6 +977,7 @@ MonoBehaviour:
   - {fileID: 5298108749540418512, guid: 27a307e491c16490cb6d2d8285f8ec74, type: 3}
   - {fileID: 5036043442380974919, guid: 1dcceffa8b3df4e97a92cfc3eeaf77ff, type: 3}
   - {fileID: 8472906414223281823, guid: b48d8fa52d9ee4b8c8cda54cb4809d04, type: 3}
+  itemBase: {fileID: 0}
 --- !u!1 &288135764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3878,9 @@ MonoBehaviour:
   bgNight: {fileID: 362255647}
   _levelMaster: []
   _levelText: {fileID: 7055350}
+  _canSpawns: []
+  _RandomNameWeapon: []
+  _RandomNameArmor: []
 --- !u!4 &1522989724
 Transform:
   m_ObjectHideFlags: 0

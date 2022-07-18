@@ -18,4 +18,8 @@ MonoBehaviour:
   itemName: "\u52C7\u8005\u306E\u5263"
   ItemType: 1
   description: 
+  rData:
+    ID: 0
+    RName: 
+    Rimg: 
   atk: 0
