@@ -13,6 +13,6 @@ public class Item : MonoBehaviour
     {
         transform.DOLocalMoveY(0.1f, 0.5f,false).SetLink(this.gameObject)
             .SetLoops(-1, LoopType.Yoyo).Play();
-
+        
     }
 }

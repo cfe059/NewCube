@@ -17,6 +17,7 @@ public enum ItemType
 public class ItemObject : ScriptableObject
 {
     public int ID;
+    public NewItem itemData;
     public GameObject itemPrefab;
     public string itemName;
     public ItemType ItemType;

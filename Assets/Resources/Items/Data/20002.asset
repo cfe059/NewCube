@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13826c81f6d324e558bbe78ca210fa45, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: cfee4f54ce1f64c879208513bfdc72ff, type: 3}
+  m_Name: 20002
   m_EditorClassIdentifier: 
-  savePath: /save.data
-  Container:
-    Items:
-    - ID: 0
-      item: {fileID: 11400000, guid: de65b5855edbf49a8a11523912c0ae99, type: 2}
-      amount: 1
+  ID: 20002
+  _ItemType: 2
+  name: "\u52C7\u8005\u306E\u30DE\u30F3\u30C8"
+  atk: 5
+  def: 20

@@ -108,6 +108,29 @@ public class PlayerBase : MonoBehaviour
 
         return false;
     }
+
+    public void EquipItem(NewItem obj,itemClick obj_e)
+    {
+        if (obj._ItemType == ItemType.Weapon)
+        {
+            _player.Equipment.weapon = obj;
+            if (_player.Equipment.weaponE != null)
+            {
+                _player.Equipment.weaponE.isEquip = false;
+            }
+
+            _player.Equipment.weaponE = obj_e;
+        }else if (obj._ItemType == ItemType.Armor)
+        {
+            _player.Equipment.Armor = obj;
+            if (_player.Equipment.ArmorE != null)
+            {
+                _player.Equipment.ArmorE.isEquip = false;
+            }
+
+            _player.Equipment.ArmorE = obj_e;
+        }
+    }
     void moveToBag(GameObject obj)
     {
         obj.transform.DOMove(bag.transform.position, 1f)
@@ -193,7 +216,14 @@ public class PlayerBase : MonoBehaviour
         //
         if (other.transform.CompareTag("Monster") )
         {
-            other.gameObject.GetComponent<MonsterBase>().get_Damage(this.gameObject,_player.stats.atk);
+            float total_atk = 0;
+            if (_player.Equipment.weapon != null)
+            {
+                total_atk += _player.Equipment.weapon.atk;
+            }
+
+            total_atk += _player.stats.atk;
+            other.gameObject.GetComponent<MonsterBase>().get_Damage(this.gameObject,total_atk);
         
         }
     }
@@ -205,6 +235,7 @@ public class Player
     public int Level;
     public int exp;
     public Character_Stats stats;
+    public Equipment Equipment;
     public float hungry;
     public float golds;
  
@@ -231,8 +262,14 @@ public class Item_Bag
 [Serializable]
 public class Equipment
 {
+    public NewItem weapon;
+    public itemClick weaponE;
+    public NewItem Armor;
+    public itemClick ArmorE;
+
     
 }
+
 [Serializable]
 public struct canEquipItem
 {

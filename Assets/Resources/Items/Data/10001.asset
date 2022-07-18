@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4333088efe9476fadf6dba8d9201cc5, type: 3}
-  m_Name: Money
+  m_Script: {fileID: 11500000, guid: cfee4f54ce1f64c879208513bfdc72ff, type: 3}
+  m_Name: 10001
   m_EditorClassIdentifier: 
-  ID: 2
-  itemPrefab: {fileID: 7421455719120381949, guid: ed95be0d5c61347a3a8f0cac784187c3, type: 3}
-  itemName: Money
-  ItemType: 7
-  description: 
+  ID: 10001
+  _ItemType: 1
+  name: "\u306A\u307E\u304F\u3089\u30BD\u30FC\u30C9"
+  atk: 5
+  def: 0

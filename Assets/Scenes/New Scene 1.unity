@@ -970,9 +970,7 @@ MonoBehaviour:
   - {fileID: 7866670203061732532, guid: 7f06ed0d2ab194c2bb6c656fdd6d8def, type: 3}
   - {fileID: 7866670203061732532, guid: 003d00589c04b491294cef09b5fe4ad9, type: 3}
   Items:
-  - {fileID: 973944422072965954, guid: 7e7feefd52871416fb3436a0158fa070, type: 3}
-  - {fileID: 7656849108466929718, guid: 3c62b4fff3a7d4bf4aa02681ba89e768, type: 3}
-  - {fileID: 973944422072965954, guid: e41bbce1d0d804b35b23395bfba6f5a6, type: 3}
+  - {fileID: 2819320961207466762, guid: a2934fb13bd064ebead60a4843d4db6a, type: 3}
   floors:
   - {fileID: 8472906414223281823, guid: f9f91954ca8a24712900a65ab7f9dbbc, type: 3}
   - {fileID: 5298108749540418512, guid: 27a307e491c16490cb6d2d8285f8ec74, type: 3}
@@ -2110,6 +2108,11 @@ MonoBehaviour:
       critical_rate: 0
       critical_damage: 0
       evasions: 0
+    Equipment:
+      weapon: {fileID: 0}
+      weaponE: {fileID: 0}
+      Armor: {fileID: 0}
+      ArmorE: {fileID: 0}
     hungry: 100
     golds: 0
   _inventory: {fileID: 11400000, guid: 47d2d509dfc504d969eacb5bb38f48f1, type: 2}
@@ -4225,7 +4228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1635152513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4244,7 +4247,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -241.84448, y: -220}
-  m_SizeDelta: {x: -286.84, y: -560}
+  m_SizeDelta: {x: -286.83997, y: -560}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1635152514
 MonoBehaviour:
@@ -4297,7 +4300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryObject: {fileID: 11400000, guid: 47d2d509dfc504d969eacb5bb38f48f1, type: 2}
-  BAG_SIZE: 12
+  BAG_SIZE: 9
   BAG_FRAME: {fileID: 7421455719120381949, guid: 5d5b566eb72f54cba8a678e0e5f48f1f, type: 3}
   X_START: -400
   Y_START: 0
@@ -5151,6 +5154,11 @@ MonoBehaviour:
       critical_rate: 0
       critical_damage: 0
       evasions: 0
+    Equipment:
+      weapon: {fileID: 0}
+      weaponE: {fileID: 0}
+      Armor: {fileID: 0}
+      ArmorE: {fileID: 0}
     hungry: 100
     golds: 0
   _inventory: {fileID: 11400000, guid: 47d2d509dfc504d969eacb5bb38f48f1, type: 2}

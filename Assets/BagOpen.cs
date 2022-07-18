@@ -20,6 +20,7 @@ public class BagOpen : MonoBehaviour
                 .OnComplete(() =>
                 {
                     panel.SetActive(false);
+
                 })
                 .Play();
         }
@@ -30,9 +31,12 @@ public class BagOpen : MonoBehaviour
             Sequence seq = DOTween.Sequence();
             seq
                 .Append(panel.GetComponent<RectTransform>().DOScale(new Vector3(1f,1f,1f),1f))
+                .OnComplete(() =>
+                {
+
+                })
                 
                 .Play();
         }
-        
     }
 }

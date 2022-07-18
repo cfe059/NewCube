@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13826c81f6d324e558bbe78ca210fa45, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: f4333088efe9476fadf6dba8d9201cc5, type: 3}
+  m_Name: Money
   m_EditorClassIdentifier: 
-  savePath: /save.data
-  Container:
-    Items:
-    - ID: 0
-      item: {fileID: 11400000, guid: de65b5855edbf49a8a11523912c0ae99, type: 2}
-      amount: 1
+  ID: 2
+  itemData: {fileID: 0}
+  itemPrefab: {fileID: 7421455719120381949, guid: ed95be0d5c61347a3a8f0cac784187c3, type: 3}
+  itemName: Money
+  ItemType: 7
+  description: 

@@ -6,16 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Inventory")]
-public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
+public class InventoryObject : ScriptableObject
 {
     public string savePath = "";
-    public ItemDatabaseObject database;
     public Inventory Container;
 
-    private void OnEnable()
-    {
-        database = AssetDatabase.LoadAssetAtPath<ItemDatabaseObject>("Assets/ScriptableObjects/Items/Database.asset");
-    }
+  
 
     public void AddItem(ItemObject item,int amount)
     {
@@ -32,7 +28,7 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
             }        
         }
         //SetEmptySlot(item, amount);
-        Container.Items.Add(new InventorySlot( database.getID[item],item, amount));
+        Container.Items.Add(new InventorySlot( item.ID,item, amount));
     }
     // public InventorySlot SetEmptySlot(ItemObject _item, int _amount)
     // {
@@ -47,15 +43,15 @@ public class InventoryObject : ScriptableObject,ISerializationCallbackReceiver
     //     //set up functionality for full inventory
     //     return null;
     // }
-    public void OnAfterDeserialize()
-    {
-        for (int i = 0; i < Container.Items.Count; i++)
-            Container.Items[i].item = database.getItem[Container.Items[i].ID];
-    }
+    // public void OnAfterDeserialize()
+    // {
+    //     for (int i = 0; i < Container.Items.Count; i++)
+    //         Container.Items[i].item = database.getItem[Container.Items[i].ID];
+    // }
     //
-    public void OnBeforeSerialize()
-    {
-    }
+    // public void OnBeforeSerialize()
+    // {
+    // }
 
     void Save()
     {
