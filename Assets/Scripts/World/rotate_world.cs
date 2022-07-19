@@ -86,10 +86,9 @@ public class rotate_world : MonoBehaviour
                 // }
                 //
                 //Player.GetComponent<Rigidbody>().useGravity = true;
-                rotate_begin = false;
                 _rotateDirection = Rotate_Direction.None;
-                _worldGenerate.RandomBackWorld();
-                
+                StartCoroutine(RandomWorld());
+
 
             }
             else
@@ -97,6 +96,14 @@ public class rotate_world : MonoBehaviour
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, _target.rotation, step);
                 
             }
+        }
+
+        IEnumerator RandomWorld()
+        {
+            yield return new WaitForSeconds(1f);
+            rotate_begin = false;
+            _worldGenerate.RandomBackWorld();
+
         }
         
     }

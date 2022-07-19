@@ -210,20 +210,26 @@ public class PlayerController : MonoBehaviour
                         C_Move(controller_Left);
                         LookAtWhenWalk("Left");
                     
-                    }else if (Input.GetAxisRaw("Jump") == 1 && GManager.Instance._turnBase == GManager.TurnBase.Player_Turn && _listOfEnemies != null)
+                    }else if (Input.GetAxisRaw("Jump") == 1 && GManager.Instance._turnBase == GManager.TurnBase.Player_Turn && _listOfEnemies.Count != 0)
                     {
                         //Send_Attack();
-                        if (_listOfEnemies != null)
+                        if (_listOfEnemies.Count != 0)
                         {
                             foreach (var enemy in _listOfEnemies)
                             {
                                 StartCoroutine(Attack(enemy.Key));
                                 break;
                             }
+                            GManager.Instance.Change_TurnBase(GManager.TurnBase.Player_Moving);
+
+                        }
+                        else
+                        {
+                            GManager.Instance.Change_TurnBase(GManager.TurnBase.Monster_Turn);
+
                         }
                         
                         // StartCoroutine(Attack(_listOfEnemies[][1]));
-                        GManager.Instance.Change_TurnBase(GManager.TurnBase.Player_Moving);
                     }
 
                     if (isMoving)

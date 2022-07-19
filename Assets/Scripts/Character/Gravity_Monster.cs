@@ -31,11 +31,11 @@ public class Gravity_Monster : MonoBehaviour
             rb = GetComponent<Rigidbody>(); //If the rb variable is null, get the rigidbody attached to this object
         if (rb.useGravity)
             rb.useGravity = false; //Make sure the rigidbody isn't using the global gravity variable
-
+        if (GameObject.FindWithTag("World").GetComponent<rotate_world>().rotate_begin)
+            return;
         Vector3 direction = (centreOfGravity.position - transform.position).normalized;
         RaycastHit hit; 
-        if (centreOfGravity.GetComponent<Collider>()
-                .Raycast(new Ray(transform.position, direction), out hit, maxDistance))
+        if (centreOfGravity.GetComponent<Collider>().Raycast(new Ray(transform.position, direction), out hit, maxDistance))
             //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         {
             //Quaternion up = Quaternion.FromToRotation(Vector3.up, hit.normal);

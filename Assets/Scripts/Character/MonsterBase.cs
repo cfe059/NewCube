@@ -8,8 +8,7 @@ public class MonsterBase : MonoBehaviour
 {
     [SerializeField]
     public Monster_Data monster;
-    [SerializeField]
-    private nodeBase node;
+    public nodeBase node;
 
     [SerializeField] private Collider _collider;
     public void get_Damage(GameObject other,float atk)

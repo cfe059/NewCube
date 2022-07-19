@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Armor Object", menuName = "Inventory System/Items/Armor")]
+#endif
 public class ArmorObject : ItemObject
 {
     [SerializeField]
@@ -15,7 +16,10 @@ public class ArmorObject : ItemObject
     {
         this.ItemType = ItemType.Armor;
     }
+#if UNITY_EDITOR
+    
     [MenuItem("Generator/Armor/Generate Items")]
+
     static public void GenerateAllWeapon()
     {
         NewItem[] items = Resources.LoadAll<NewItem>("Items/Data/");
@@ -49,7 +53,8 @@ public class ArmorObject : ItemObject
         DestroyImmediate(objSource);
 
     }
- 
+#endif
+
     private void OnEnable()
     {
         itemData = Resources.Load<NewItem>($"Items/Data/{ID}");

@@ -15,6 +15,7 @@ public class CSVReader : MonoBehaviour
 
     public List<Item_System> _itemSystem;
     public List<LevelMaster> _LevelData;
+    public List<StatusMaster> _StatusData;
     // Start is called before the first frame update
     //_csv Data :: _csvDatas[x][0] == ID
     //_csv Data :: _csvDatas[x][1] == ItemName
@@ -31,14 +32,15 @@ public class CSVReader : MonoBehaviour
     void Awake()
     {
         LevelDataRead();
+        StatusDataRead();
     }
 
     void LevelDataRead()
     { 
         List<string[]> _csvDatas = new List<string[]>();
 
-        _csvItem = Resources.Load<TextAsset>("Data/gyakun_level_master");
-        StringReader reader = new StringReader(_csvItem.text);
+        _csvLevel = Resources.Load<TextAsset>("Data/gyakun_level_master");
+        StringReader reader = new StringReader(_csvLevel.text);
         
         while (reader.Peek() != -1) 
         {
@@ -53,6 +55,30 @@ public class CSVReader : MonoBehaviour
             lvl.NextExp = int.Parse(_csvDatas[i][1]);
             lvl.TotalExptoNext = int.Parse(_csvDatas[i][2]);
             _LevelData.Add(lvl);
+        }
+        
+    }
+    void StatusDataRead()
+    { 
+        List<string[]> _csvDatas = new List<string[]>();
+
+        _csvStats = Resources.Load<TextAsset>("Data/gyakun_status_master");
+        StringReader reader = new StringReader(_csvStats.text);
+        
+        while (reader.Peek() != -1) 
+        {
+            string line = reader.ReadLine();
+            _csvDatas.Add(line.Split(','));
+        }
+
+        for (int i = 1; i < _csvDatas.Count; i++)
+        {
+            StatusMaster stats = new StatusMaster();
+            stats.Level = int.Parse(_csvDatas[i][0]);
+            stats.MaxHp = int.Parse(_csvDatas[i][1]);
+            stats.Atk = int.Parse(_csvDatas[i][2]);
+            stats.Def = int.Parse(_csvDatas[i][3]);
+            _StatusData.Add(stats);
         }
         
     }
@@ -103,4 +129,12 @@ public class LevelMaster
     public int Level;
     public int NextExp;
     public int TotalExptoNext;
+}
+[Serializable]
+public class StatusMaster
+{
+    public int Level;
+    public int MaxHp;
+    public int Atk;
+    public int Def;
 }

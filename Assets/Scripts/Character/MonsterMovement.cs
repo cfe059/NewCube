@@ -28,10 +28,10 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField]
     private Animator _animator;
     private Rigidbody rb;
-    public Vector3 a;
     public PlayerController.CharacterState _characterState;
     [SerializeField]
     private Transform body;
+
     void Start()
     {
         OverLapBox();
@@ -167,7 +167,11 @@ public class MonsterMovement : MonoBehaviour
         
     }
     // Update is called once per frame
-    
+    private void FixedUpdate()
+    {
+      
+    }
+
     void Update()
     {
         now = transform.position;
@@ -181,7 +185,7 @@ public class MonsterMovement : MonoBehaviour
             if (!isMoving && !_rotateWorld.rotate_begin && transform.parent.parent.GetComponent<nodeActive>().ActivateFace )
             {
                 LookAtWhenWalk(Player_Near);
-
+                
             }
             
             if (isMoving)

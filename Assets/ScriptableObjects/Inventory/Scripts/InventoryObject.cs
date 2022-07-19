@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Inventory")]
+#endif
 public class InventoryObject : ScriptableObject
 {
     public string savePath = "";

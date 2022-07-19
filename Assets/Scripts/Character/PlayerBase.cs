@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,16 +22,24 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private GameObject bag;
     private void Start()
     {
+        InitialPlayer();
+        _player.stats.hp = _player.stats.Maxhp;
         hpObj.maxValue = _player.stats.Maxhp;
-        expObj.maxValue = 10;
+        expObj.maxValue =  GManager.Instance.GetComponent<CSVReader>()._LevelData[_player.Level-1].NextExp;;
         hpObj.value = _player.stats.hp;
         expObj.value = _player.exp;
 //        expObj.maxValue = GManager.Instance._levelMaster[_player.Level-1].NextExp;
         GManager.Instance.ChangeLevel(_player.Level);
     }
 
-    
-    
+
+    void InitialPlayer()
+    {
+        List<StatusMaster> stats =  GManager.Instance.GetComponent<CSVReader>()._StatusData;
+        _player.stats.Maxhp = stats[_player.Level - 1].MaxHp;
+        _player.stats.atk = stats[_player.Level - 1].Atk;
+        _player.stats.def = stats[_player.Level - 1].Def;
+    }
     private void Update()
     {
         if (GManager.Instance._turnBase != GManager.TurnBase.Player_Turn)
@@ -86,6 +95,9 @@ public class PlayerBase : MonoBehaviour
                         .Play();
                     GManager.Instance.ChangeLevel(_player.Level);
                     expObj.maxValue = GManager.Instance._levelMaster[_player.Level - 1].NextExp;
+                    InitialPlayer();
+                    hpObj.maxValue = _player.stats.Maxhp;
+
                     //effect
                 }
             })
@@ -109,10 +121,22 @@ public class PlayerBase : MonoBehaviour
         return false;
     }
 
-    public void EquipItem(NewItem obj,itemClick obj_e)
+    public void EquipItem(NewItem obj,itemClick obj_e,bool unequip = false)
     {
+     
         if (obj._ItemType == ItemType.Weapon)
         {
+            if (unequip)
+            {
+                _player.Equipment.weapon = null;
+                if (_player.Equipment.weaponE != null)
+                {
+                    _player.Equipment.weaponE.isEquip = false;
+                    _player.Equipment.weaponE = null;
+                }
+
+                return;
+            }
             _player.Equipment.weapon = obj;
             if (_player.Equipment.weaponE != null)
             {
@@ -122,6 +146,17 @@ public class PlayerBase : MonoBehaviour
             _player.Equipment.weaponE = obj_e;
         }else if (obj._ItemType == ItemType.Armor)
         {
+            if (unequip)
+            {
+                _player.Equipment.Armor = null;
+                if (_player.Equipment.ArmorE != null)
+                {
+                    _player.Equipment.ArmorE.isEquip = false;
+                    _player.Equipment.ArmorE = null;
+                }
+
+                return;
+            }
             _player.Equipment.Armor = obj;
             if (_player.Equipment.ArmorE != null)
             {
@@ -130,6 +165,7 @@ public class PlayerBase : MonoBehaviour
 
             _player.Equipment.ArmorE = obj_e;
         }
+        
     }
     void moveToBag(GameObject obj)
     {
@@ -152,6 +188,7 @@ public class PlayerBase : MonoBehaviour
 
     int MoneyUpdate()
     {
+        
         int money = 0;
         foreach (var item in _inventory.Container.Items)
         {

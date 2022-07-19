@@ -4,9 +4,14 @@
 
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+
+using UnityEditor;
 [CreateAssetMenu(fileName = "New Random Name Item Database", menuName = "Inventory System/Items/RandomName")]
+#endif
+
 public class RandomNameDatabase : ScriptableObject
 {
     [SerializeField]

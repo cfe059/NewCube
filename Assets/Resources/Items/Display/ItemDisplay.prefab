@@ -76,7 +76,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 0.7914926, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -225,5 +225,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d617a7b5c9ee489bbf4c3e0b8da0eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasPopup: {fileID: 4616534536291305539, guid: 7b3740af817524ca1b8d440cdb475d88, type: 3}
+  canvasPopup: {fileID: 4616534536291305539, guid: 75c5d00aec98643bc9a8f3a90eb1c14f, type: 3}
   isEquip: 0

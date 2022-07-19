@@ -2,14 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEditor;
+
+#if UNITY_EDITOR
 
 [CreateAssetMenu(fileName = "New Weapon Object", menuName = "Inventory System/Items/Weapon")]
+#endif
+
 public class WeaponObject : ItemObject
 {
+#if UNITY_EDITOR
+    
     [MenuItem("Generator/Weapon/Generate Items")]
+
     static public void GenerateAllWeapon()
     {
         NewItem[] items = Resources.LoadAll<NewItem>("Items/Data/");
@@ -42,6 +48,7 @@ public class WeaponObject : ItemObject
         GameObject obj = PrefabUtility.SaveAsPrefabAsset(objSource, $"Assets/Resources/Items/Display/{ID}.prefab");
         DestroyImmediate(objSource);
     }
+#endif
 
     public RandomName_Obj rData;
     public float atk;

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+#if UNITY_EDITOR
+
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class NewDatabase : ScriptableObject
@@ -11,8 +14,10 @@ public class NewDatabase : ScriptableObject
 
 
     static private TextAsset itemCSVPath;
-
+#if UNITY_EDITOR
+    
     [MenuItem("Generator/Generate Items")]
+
     static public void GenerateItems()
     {
         List<string[]> _csvDatas = new List<string[]>();
@@ -44,7 +49,8 @@ public class NewDatabase : ScriptableObject
         }
         AssetDatabase.SaveAssets();
     }
-    
+#endif
+
 }
 
 

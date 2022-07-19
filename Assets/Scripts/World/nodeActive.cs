@@ -30,10 +30,15 @@ public class nodeActive : MonoBehaviour
         {
             Monsters = GetChildren(parentMonster);
            // Debug.Log(Monsters[0].GetComponent<MonsterBase>().isMoving);
-
+           
            if (GManager.Instance._turnBase == GManager.TurnBase.Monster_Turn && !_rotateWorld.rotate_begin)
            {
-
+               if (Monsters.Count == 0)
+               {
+                   GManager.Instance._turnBase = GManager.TurnBase.Monster_Moving;
+                   StartCoroutine(waitTime(0.5f,GManager.TurnBase.Player_Turn));
+                   return;
+               }
                for (int i = 0; i < Monsters.Count; i++)
                {
 
@@ -72,6 +77,12 @@ public class nodeActive : MonoBehaviour
            }    
            else if (GManager.Instance._turnBase == GManager.TurnBase.Monster_Moving)
             {
+                if (Monsters.Count == 0)
+                {
+                   // StartCoroutine(waitTime(1,GManager.TurnBase.Player_Turn));
+                    return;
+                    //GManager.Instance._turnBase = GManager.TurnBase.Monster_Moving;
+                }
                 int just_move = 0;
                 foreach (var mob in Monsters)
                 {
@@ -82,9 +93,10 @@ public class nodeActive : MonoBehaviour
                     }
                 }
 
+                
                 if (just_move == Monsters.Count)
                 {
-                    StartCoroutine(waitTime(2,GManager.TurnBase.Player_Turn));
+                    StartCoroutine(waitTime(1,GManager.TurnBase.Player_Turn));
                     
                     foreach (var mob in Monsters)
                     {
@@ -123,7 +135,7 @@ public class nodeActive : MonoBehaviour
         yield return new WaitUntil(() => GManager.Instance.MonsterMove_Turn == count);
         GManager.Instance.MonsterMove = true;
 
-        yield return new WaitForSeconds(1);
+       // yield return new WaitForSeconds(1);
 
         if (count != 0)
         {
@@ -162,7 +174,7 @@ public class nodeActive : MonoBehaviour
         
     }
 
-    IEnumerator waitTime(int time,GManager.TurnBase state)
+    IEnumerator waitTime(float time,GManager.TurnBase state)
     {
         yield return new WaitForSeconds(time);
         GManager.Instance._turnBase = state;

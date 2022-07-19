@@ -28,6 +28,7 @@ public class itemClick : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
     {
         if (Itemdata._ItemType == ItemType.Weapon || Itemdata._ItemType == ItemType.Armor)
         {
+            
             Debug.Log($"want to use {Itemdata.R_Data.RName}");
             ItemPopup popup = canvasPopup.GetComponent<ItemPopup>();
             popup._ItemDataClick = GetComponent<itemClick>();
