@@ -19,7 +19,7 @@ public class DisplayInventory : MonoBehaviour
 
     private void Start()
     {
-        InventoryObject.Container = new Inventory();
+        //InventoryObject.Container = new Inventory();
         //createEmpty();
         CreateDisplay();
     }
@@ -46,17 +46,17 @@ public class DisplayInventory : MonoBehaviour
         {
             if(itemDisplay.ContainsKey(InventoryObject.Container.Items[i]))
             {
-                if ( itemDisplay[InventoryObject.Container.Items[i]].GetComponent<itemClick>().isEquip)
-                {
-                    itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = "E";
-
-                }
-                else if (!itemDisplay[InventoryObject.Container.Items[i]].GetComponent<itemClick>().isEquip)
-                {
-                    itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = "";
-
-                }
-                
+                // if ( itemDisplay[InventoryObject.Container.Items[i]].GetComponent<itemClick>().isEquip)
+                // {
+                //     itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = "E";
+                //
+                // }
+                // else if (!itemDisplay[InventoryObject.Container.Items[i]].GetComponent<itemClick>().isEquip)
+                // {
+                //     itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                //
+                // }
+                //
                 //itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
             }
             else
@@ -80,11 +80,15 @@ public class DisplayInventory : MonoBehaviour
         int count = 0;
         foreach (var item in InventoryObject.Container.Items)
         {
-            var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,Frames[count].transform);
+            this.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+
+            var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(count);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = item.amount.ToString("n0");
             itemDisplay.Add(item,obj);
             count++;
+            this.GetComponent<RectTransform>().pivot = new Vector2(1f, 0.5f);
+
             
         }
     }

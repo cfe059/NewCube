@@ -15,7 +15,15 @@ MonoBehaviour:
   savePath: /save.data
   Container:
     Items:
-    - ID: 50006
-      item: {fileID: 11400000, guid: 7cb5c9acf50f6472a8fb4b2cc7b34a64, type: 2}
-      amount: 1
-      expire_turn: -2
+    - ID: 40010
+      item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
+      amount: 0
+      expire_turn: 0
+    - ID: 40010
+      item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
+      amount: 0
+      expire_turn: 0
+    - ID: 40010
+      item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
+      amount: 0
+      expire_turn: 0

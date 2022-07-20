@@ -172,16 +172,25 @@ public class PlayerBase : MonoBehaviour
 
         if (obj._ItemType == ItemType.Food)
         {
-            if (_player.Maxhungry  < obj.hungry + _player.Maxhungry)
+            
+            int totalhungry = 0;
+            if (_player.Maxhungry  < obj.hungry + _player.hungry)
             {
-                int totalheal =  ((int)_player.hungry + obj.hungry) - (int)_player.Maxhungry;
-                _player.hungry += totalheal;
+                totalhungry =  ((int)_player.Maxhungry + obj.hungry )-((int)_player.hungry + obj.hungry);
+                _player.hungry += totalhungry;
 
             }
             else
             {
-                _player.hungry += obj.hungry;
+                totalhungry = obj.hungry;
+                _player.hungry += totalhungry;
             }
+
+            if (totalhungry > 0)
+            {
+                setPopup(totalhungry,Color.yellow);
+            }
+            GManager.Instance.Logger($"{obj.ID}を使用します");
 
             _player.Maxhungry += obj.Maxhungry;
         }   
@@ -192,27 +201,33 @@ public class PlayerBase : MonoBehaviour
 
         if (obj._ItemType == ItemType.Herb)
         {
-            if (_player.Maxhungry  < obj.hungry + _player.Maxhungry)
+            int totalheal = 0;
+            int totalhungry = 0;
+            if (_player.Maxhungry < (obj.hungry + _player.hungry))
             {
-                int totalheal =  ((int)_player.hungry + obj.hungry) - (int)_player.Maxhungry;
-                _player.hungry += totalheal;
+                
+                totalhungry =  ((int)_player.Maxhungry + obj.hungry )-((int)_player.hungry + obj.hungry);
+
+                _player.hungry += totalhungry;
 
             }
             else
             {
-                _player.hungry += obj.hungry;
+                totalhungry = obj.hungry;
+                _player.hungry += totalhungry;
 
             }
             _player.Maxhungry += obj.Maxhungry;
             if (_player.stats.Maxhp  < obj.hp + _player.stats.hp)
             {
-                int totalheal =  ((int)_player.stats.hp + obj.hp) - (int)_player.stats.Maxhp;
+                totalheal =  ( (int)_player.stats.Maxhp + obj.hp)-((int)_player.stats.hp + obj.hp) ;
                 _player.stats.hp += totalheal;
                 
             }
             else
             {
-                _player.stats.hp += obj.hp;
+                totalheal = obj.hp;
+                _player.stats.hp += totalheal;
             }
 
             if (obj.effect.turn != 0)
@@ -223,6 +238,16 @@ public class PlayerBase : MonoBehaviour
                 _player.buffs.Add(buff);
             }
             hpObj.value = _player.stats.hp;
+            if (totalheal > 0)
+            {
+                setPopup(totalheal,Color.green);   
+            }
+
+            if (totalhungry > 0)
+            {
+                setPopup(totalhungry,Color.yellow);
+            }
+            GManager.Instance.Logger($"{obj.ID}を使用します");
             _inventory.RemoveItem(_index);
 
         }   
@@ -325,6 +350,15 @@ public class PlayerBase : MonoBehaviour
         GameObject i = Instantiate(d);
         i.transform.position = this.transform.position;
         GetComponent<PlayerController>()._playerState = PlayerController.CharacterState.Idle;
+
+    }
+    void setPopup(float number,Color color)
+    {
+        GameObject d = Resources.Load<GameObject>("Damage");
+        d.GetComponent<DamagePopup>().damage = (int)number;
+        d.GetComponentInChildren<TextMeshProUGUI>().color = color;
+        GameObject i = Instantiate(d);
+        i.transform.position = this.transform.position;
 
     }
     private void OnTriggerExit(Collider other)

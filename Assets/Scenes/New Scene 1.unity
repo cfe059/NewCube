@@ -961,11 +961,11 @@ MonoBehaviour:
   - {fileID: 907179642}
   - {fileID: 495502452}
   _nodeActives: []
-  MonsterMinimum: 2
-  MonsterMaximum: 2
-  WallMinimum: 3
+  MonsterMinimum: 1
+  MonsterMaximum: 3
+  WallMinimum: 1
   WallMaximum: 4
-  ItemRange: {x: 5, y: 5}
+  ItemRange: {x: 4, y: 4}
   monster:
   - {fileID: 7866670203061732532, guid: 7c4e31ad06816453fbc9e893db7005e8, type: 3}
   - {fileID: 7866670203061732532, guid: 7f06ed0d2ab194c2bb6c656fdd6d8def, type: 3}
@@ -2115,6 +2115,7 @@ MonoBehaviour:
       weaponE: {fileID: 0}
       Armor: {fileID: 0}
       ArmorE: {fileID: 0}
+    buffs: []
     hungry: 100
     Maxhungry: 100
     golds: 0
@@ -5168,6 +5169,7 @@ MonoBehaviour:
       weaponE: {fileID: 0}
       Armor: {fileID: 0}
       ArmorE: {fileID: 0}
+    buffs: []
     hungry: 100
     Maxhungry: 0
     golds: 0
