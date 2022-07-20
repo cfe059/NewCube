@@ -7,6 +7,7 @@ public class BagOpen : MonoBehaviour
 {
     // Start is called before the first frame updateublip
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject log;
     private bool open;
     /// <summary>
     /// カバンクリックされる時のアニメション
@@ -15,6 +16,7 @@ public class BagOpen : MonoBehaviour
     {
         if (open)
         {
+            log.SetActive(true);
             Sequence seq = DOTween.Sequence();
             seq
                 .Append(panel.GetComponent<RectTransform>().DOScale(new Vector3(0f,1f,1f),1f))
@@ -28,6 +30,7 @@ public class BagOpen : MonoBehaviour
         else
         {
             open = true;
+            log.SetActive(false);
             panel.transform.localScale = new Vector3(0f,1f,1f);
             Sequence seq = DOTween.Sequence();
             seq

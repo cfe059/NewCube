@@ -13,7 +13,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField]
     private Player _player;
     public InventoryObject _inventory;
-    private Item stand_item;
+    private ItemEquipment _standItemEquipment;
     [SerializeField] private GameObject dialogPickup;
     [SerializeField] private GameObject dialogMove;
     [SerializeField] private GameObject gold;
@@ -53,24 +53,24 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
         {
-            if (stand_item != null &&  (_inventory.Container.Items.Count < 9))
+            if (_standItemEquipment != null &&  (_inventory.Container.Items.Count < 9))
             {
 
-                _inventory.AddItem(stand_item.item, 1);
-                GManager.Instance.Logger($"{stand_item.GetComponent<Item>().item.itemName}を発見！鞄にしまった。");
-                ForceTurnChange();
-                moveToBag(stand_item.gameObject);
+                _inventory.AddItem(_standItemEquipment.item, 1);
+                GManager.Instance.Logger($"{_standItemEquipment.GetComponent<ItemEquipment>().item.itemName}を発見！鞄にしまった。");
+                P_TurnChange();
+                moveToBag(_standItemEquipment.gameObject);
                 //Destroy(stand_item.gameObject);
             }
             else if( _inventory.Container.Items.Count >= 9)
             {
-                ForceTurnChange();
-                GManager.Instance.Logger($"足元を調べた。{stand_item.GetComponent<Item>().item.itemName}を発見！しかし鞄がいっぱいだった…。");
+                P_TurnChange();
+                GManager.Instance.Logger($"足元を調べた。{_standItemEquipment.GetComponent<ItemEquipment>().item.itemName}を発見！しかし鞄がいっぱいだった…。");
  
             }
             else
             {
-                ForceTurnChange();
+                P_TurnChange();
                 GManager.Instance.Logger($"足元を調べた。しかし何も見つからなかった。");
 
             }
@@ -121,7 +121,7 @@ public class PlayerBase : MonoBehaviour
         return false;
     }
 
-    public void EquipItem(NewItem obj,itemClick obj_e,bool unequip = false)
+    public void EquipItem(Equipment_Obj obj,itemClick obj_e,bool unequip = false)
     {
      
         if (obj._ItemType == ItemType.Weapon)
@@ -167,6 +167,67 @@ public class PlayerBase : MonoBehaviour
         }
         
     }
+    public void useFood(Food_Obj obj)
+    {
+
+        if (obj._ItemType == ItemType.Food)
+        {
+            if (_player.Maxhungry  < obj.hungry + _player.Maxhungry)
+            {
+                int totalheal =  ((int)_player.hungry + obj.hungry) - (int)_player.Maxhungry;
+                _player.hungry += totalheal;
+
+            }
+            else
+            {
+                _player.hungry += obj.hungry;
+            }
+
+            _player.Maxhungry += obj.Maxhungry;
+        }   
+        
+    }
+    public void useHerb(Herb_Obj obj,int _index)
+    {
+
+        if (obj._ItemType == ItemType.Herb)
+        {
+            if (_player.Maxhungry  < obj.hungry + _player.Maxhungry)
+            {
+                int totalheal =  ((int)_player.hungry + obj.hungry) - (int)_player.Maxhungry;
+                _player.hungry += totalheal;
+
+            }
+            else
+            {
+                _player.hungry += obj.hungry;
+
+            }
+            _player.Maxhungry += obj.Maxhungry;
+            if (_player.stats.Maxhp  < obj.hp + _player.stats.hp)
+            {
+                int totalheal =  ((int)_player.stats.hp + obj.hp) - (int)_player.stats.Maxhp;
+                _player.stats.hp += totalheal;
+                
+            }
+            else
+            {
+                _player.stats.hp += obj.hp;
+            }
+
+            if (obj.effect.turn != 0)
+            {
+                PlayerBuff buff = new PlayerBuff();
+                buff.buff = obj.effect;
+                buff.turn = obj.effect.turn;
+                _player.buffs.Add(buff);
+            }
+            hpObj.value = _player.stats.hp;
+            _inventory.RemoveItem(_index);
+
+        }   
+        
+    }
     void moveToBag(GameObject obj)
     {
         obj.transform.DOMove(bag.transform.position, 1f)
@@ -176,13 +237,44 @@ public class PlayerBase : MonoBehaviour
             })
             .Play();
     }
-    void ForceTurnChange()
+    public void P_TurnChange()
     {
-        GManager.Instance._turnBase = GManager.TurnBase.Monster_Turn;
+       ItemExpire();
+       buffExpire();
+       GManager.Instance._turnBase = GManager.TurnBase.Monster_Turn;
+    }
+
+    void buffExpire()
+    {
+        for (int i = 0; i < _player.buffs.Count; i++)
+        {
+            _player.buffs[i].turn -= 1;
+            if (_player.buffs[i].turn <= 0)
+            {
+                _player.buffs.RemoveAt(i);
+            }
+        }
+    }
+    void ItemExpire()
+    {
+        for (int i = 0; i < _inventory.Container.Items.Count; i++)
+        {
+            if (_inventory.Container.Items[i].item.ItemType == ItemType.Food && _inventory.Container.Items[i].expire_turn != 0)
+            {
+                _inventory.Container.Items[i].expire_turn -= 1;
+            }
+
+            if (_inventory.Container.Items[i].item.ItemType == ItemType.Food &&_inventory.Container.Items[i].expire_turn == 0 && _inventory.Container.Items[i].item.itemData_F.newID != 0)
+            {
+                _inventory.AddItem(Resources.Load<FoodObject>($"ScriptableObjects/Items/Obj/{_inventory.Container.Items[i].item.itemData_F.newID}"),1);
+                _inventory.Container.Items.RemoveAt(i);
+            }
+        }
     }
     private void FixedUpdate()
     {
         _player.golds = MoneyUpdate();
+        
         gold.GetComponent<TextMeshProUGUI>().text = $"Golds : {_player.golds}";
     }
 
@@ -216,10 +308,10 @@ public class PlayerBase : MonoBehaviour
     {
         if (other.transform.CompareTag("Item") && GetComponent<PlayerController>()._playerState != PlayerController.CharacterState.Attack)
         {
-            var item = other.GetComponent<Item>();
+            var item = other.GetComponent<ItemEquipment>();
             if (item)
             {
-                stand_item = item;
+                _standItemEquipment = item;
                 //  _inventory.AddItem(item.item,1);
                 //  Destroy(other.gameObject);
             }
@@ -240,7 +332,7 @@ public class PlayerBase : MonoBehaviour
         if (other.transform.CompareTag("Item") &&
             GetComponent<PlayerController>()._playerState != PlayerController.CharacterState.Attack)
         {
-            stand_item = null;
+            _standItemEquipment = null;
         }
     }
 
@@ -270,6 +362,11 @@ public class PlayerBase : MonoBehaviour
         
         }
     }
+
+    void EndTurn()
+    {
+        
+    }
 }
 
 [Serializable]
@@ -279,7 +376,9 @@ public class Player
     public int exp;
     public Character_Stats stats;
     public Equipment Equipment;
+    public List<PlayerBuff> buffs;
     public float hungry;
+    public float Maxhungry;
     public float golds;
  
 }
@@ -301,13 +400,18 @@ public class Character_Stats
 public class Item_Bag
 {
     public List<InventorySlot> ItemList;
+}[Serializable]
+public class PlayerBuff
+{
+    public Buff_Obj buff;
+    public int turn;
 }
 [Serializable]
 public class Equipment
 {
-    public NewItem weapon;
+    public Equipment_Obj weapon;
     public itemClick weaponE;
-    public NewItem Armor;
+    public Equipment_Obj Armor;
     public itemClick ArmorE;
 
     

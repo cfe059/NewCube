@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946e00bb74df40c7a78d4a8fac7090cd, type: 3}
+  m_Name: 40001
+  m_EditorClassIdentifier: 
+  ID: 40001
+  _ItemType: 3
+  _name: "\u96D1\u8349"
+  hungry: 5
+  Maxhungry: 0
+  hp: 0
+  effect:
+    atk: 0
+    def: 0
+    turn: 0
+  description: "\u3069\u3053\u306B\u3067\u3082\u751F\u3048\u3066\u3044\u308B\u96D1\u8349\u3002"
+  R_Data:
+    ID: 0
+    RName: 
+    Rimg: 

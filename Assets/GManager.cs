@@ -40,6 +40,8 @@ public class GManager : MonoBehaviour
     [SerializeField] public List<canSpawn> _canSpawns ;
     [SerializeField] public List<RandomName> _RandomNameWeapon ;
     [SerializeField] public List<RandomName> _RandomNameArmor ;
+    [SerializeField] public List<RandomName> _RandomNameFoods ;
+    [SerializeField] public List<RandomName> _RandomNameHerbs ;
     
     void Awake()
     {
@@ -58,7 +60,14 @@ public class GManager : MonoBehaviour
 
     void RandomData()
     {
-        NewItem[] items = Resources.LoadAll<NewItem>("Items/Data/");
+        RandomDataFoods();
+        RandomDataHerbs();
+        RandomDataEquipMent();
+    }
+
+    void RandomDataEquipMent()
+    {
+        Equipment_Obj[] items = Resources.LoadAll<Equipment_Obj>("Items/Data/");
         foreach (var item in items)
         {
             if (item._ItemType == ItemType.Weapon)
@@ -75,7 +84,34 @@ public class GManager : MonoBehaviour
             }
         }
     }
-    
+    void RandomDataFoods()
+    {
+        Food_Obj[] items = Resources.LoadAll<Food_Obj>("Items/Data/");
+        foreach (var item in items)
+        {
+            if (item._ItemType == ItemType.Food)
+            {
+                int r = Random.Range(0, _RandomNameFoods.Count);
+                item.R_Data = _RandomNameFoods[r];
+                _RandomNameFoods.RemoveAt(r);
+
+            }
+        }
+    }
+    void RandomDataHerbs()
+    {
+        Herb_Obj[] items = Resources.LoadAll<Herb_Obj>("Items/Data/");
+        foreach (var item in items)
+        {
+            if (item._ItemType == ItemType.Herb)
+            {
+                int r = Random.Range(0, _RandomNameHerbs.Count);
+                item.R_Data = _RandomNameHerbs[r];
+                _RandomNameHerbs.RemoveAt(r);
+
+            }
+        }
+    }
     void CSV_RName()
     {
         List<string[]> _csvData = new List<string[]>();
@@ -90,7 +126,9 @@ public class GManager : MonoBehaviour
     
         
         List<RandomName> _tmpNameW = new List<RandomName>();
-        List<RandomName> _tmpNameA= new List<RandomName>();
+        List<RandomName> _tmpNameA = new List<RandomName>();
+        List<RandomName> _tmpNameF = new List<RandomName>();
+        List<RandomName> _tmpNameH = new List<RandomName>();
 
         for (int i = 1; i < _csvData.Count; i++)
         {
@@ -98,6 +136,7 @@ public class GManager : MonoBehaviour
             _tmp.ID = int.Parse(_csvData[i][0]);
             _tmp.RName = _csvData[i][1];
             _tmp.Rimg = _csvData[i][2];
+            //Debug.Log(_tmp.ID);
             if (_csvData[i][0].Substring(0,1) == "1")
             {
                 _tmpNameW.Add(_tmp);
@@ -107,11 +146,19 @@ public class GManager : MonoBehaviour
             {
                 _tmpNameA.Add(_tmp);
 
+            }else if (_csvData[i][0].Substring(0,1) == "4")
+            {
+                _tmpNameH.Add(_tmp);
+
+            }else if (_csvData[i][0].Substring(0,1) == "5")
+            {
+                _tmpNameF.Add(_tmp);
             }
         }
-
         _RandomNameWeapon = _tmpNameW;
         _RandomNameArmor = _tmpNameA;
+        _RandomNameHerbs = _tmpNameH;
+        _RandomNameFoods = _tmpNameF;
     }
     public void ChangeLevel(int level)
     {
@@ -193,7 +240,7 @@ public class GManager : MonoBehaviour
         for (int i = 1; i < _csvSpawn.Count; i++)
         {
             canSpawn _tmpSpawn = new canSpawn();
-            Debug.Log(_csvSpawn[i][1]);
+//            Debug.Log(_csvSpawn[i][1]);
             if (_GameState.days >= int.Parse(_csvSpawn[i][1]) && _GameState.days <= int.Parse(_csvSpawn[i][2]))
             {
                 _tmpSpawn.ID = int.Parse(_csvSpawn[i][0]);

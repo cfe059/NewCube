@@ -64,12 +64,15 @@ public class DisplayInventory : MonoBehaviour
                 this.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
                 var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+                obj.GetComponent<itemClick>()._index = i;
 //                obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
                 itemDisplay.Add(InventoryObject.Container.Items[i], obj);
                 this.GetComponent<RectTransform>().pivot = new Vector2(1f, 0.5f);
 
             }
-        } 
+        }
+
+        
     }
     
     void CreateDisplay()

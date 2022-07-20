@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitUntil(() => _rotateWorld.rotate_begin == false);
 
-        GManager.Instance.Change_TurnBase(GManager.TurnBase.Monster_Turn);
+        GetComponent<PlayerBase>().P_TurnChange();
     }
 
     IEnumerator Attack(string s_direction)
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            GManager.Instance.Change_TurnBase(GManager.TurnBase.Monster_Turn);
+                            GetComponent<PlayerBase>().P_TurnChange();
 
                         }
                         

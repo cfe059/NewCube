@@ -541,6 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1635152512}
+  log: {fileID: 384656756}
 --- !u!1 &61989754
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +965,7 @@ MonoBehaviour:
   MonsterMaximum: 2
   WallMinimum: 3
   WallMaximum: 4
-  ItemRange: {x: 0, y: 2}
+  ItemRange: {x: 5, y: 5}
   monster:
   - {fileID: 7866670203061732532, guid: 7c4e31ad06816453fbc9e893db7005e8, type: 3}
   - {fileID: 7866670203061732532, guid: 7f06ed0d2ab194c2bb6c656fdd6d8def, type: 3}
@@ -2115,6 +2116,7 @@ MonoBehaviour:
       Armor: {fileID: 0}
       ArmorE: {fileID: 0}
     hungry: 100
+    Maxhungry: 100
     golds: 0
   _inventory: {fileID: 11400000, guid: 47d2d509dfc504d969eacb5bb38f48f1, type: 2}
   dialogPickup: {fileID: 1919537402}
@@ -3880,6 +3882,8 @@ MonoBehaviour:
   _canSpawns: []
   _RandomNameWeapon: []
   _RandomNameArmor: []
+  _RandomNameFoods: []
+  _RandomNameHerbs: []
 --- !u!4 &1522989724
 Transform:
   m_ObjectHideFlags: 0
@@ -5165,6 +5169,7 @@ MonoBehaviour:
       Armor: {fileID: 0}
       ArmorE: {fileID: 0}
     hungry: 100
+    Maxhungry: 0
     golds: 0
   _inventory: {fileID: 11400000, guid: 47d2d509dfc504d969eacb5bb38f48f1, type: 2}
   dialogPickup: {fileID: 0}
