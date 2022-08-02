@@ -18,6 +18,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private GameObject dialogMove;
     [SerializeField] private GameObject gold;
     [SerializeField] private Slider hpObj;
+    [SerializeField] private Slider hungryObj;
     [SerializeField] private Slider expObj;
     [SerializeField] private GameObject bag;
     private void Start()
@@ -25,6 +26,8 @@ public class PlayerBase : MonoBehaviour
         InitialPlayer();
         _player.stats.hp = _player.stats.Maxhp;
         hpObj.maxValue = _player.stats.Maxhp;
+        hungryObj.maxValue = _player.Maxhungry;
+        hungryObj.value = _player.hungry;
         expObj.maxValue =  GManager.Instance.GetComponent<CSVReader>()._LevelData[_player.Level-1].NextExp;;
         hpObj.value = _player.stats.hp;
         expObj.value = _player.exp;
@@ -173,10 +176,10 @@ public class PlayerBase : MonoBehaviour
         if (obj._ItemType == ItemType.Food)
         {
             
-            int totalhungry = 0;
+            float totalhungry = 0;
             if (_player.Maxhungry  < obj.hungry + _player.hungry)
             {
-                totalhungry =  ((int)_player.Maxhungry + obj.hungry )-((int)_player.hungry + obj.hungry);
+                totalhungry =  (_player.Maxhungry + obj.hungry )-(_player.hungry + obj.hungry);
                 _player.hungry += totalhungry;
 
             }
@@ -193,20 +196,31 @@ public class PlayerBase : MonoBehaviour
             GManager.Instance.Logger($"{obj.ID}を使用します");
 
             _player.Maxhungry += obj.Maxhungry;
+            
+            hpObj.maxValue = _player.stats.Maxhp;
+            hpObj.value = _player.stats.hp;
+            hungryObj.maxValue = _player.Maxhungry;
+            hungryObj.value = _player.hungry;
         }   
         
+    }
+
+    public void useHungry(float num)
+    {
+        _player.hungry -= num;
+        hungryObj.value = _player.hungry;
     }
     public void useHerb(Herb_Obj obj,int _index)
     {
 
         if (obj._ItemType == ItemType.Herb)
         {
-            int totalheal = 0;
-            int totalhungry = 0;
+            float totalheal = 0;
+            float totalhungry = 0;
             if (_player.Maxhungry < (obj.hungry + _player.hungry))
             {
                 
-                totalhungry =  ((int)_player.Maxhungry + obj.hungry )-((int)_player.hungry + obj.hungry);
+                totalhungry =  (_player.Maxhungry + obj.hungry )-(_player.hungry + obj.hungry);
 
                 _player.hungry += totalhungry;
 
@@ -220,7 +234,7 @@ public class PlayerBase : MonoBehaviour
             _player.Maxhungry += obj.Maxhungry;
             if (_player.stats.Maxhp  < obj.hp + _player.stats.hp)
             {
-                totalheal =  ( (int)_player.stats.Maxhp + obj.hp)-((int)_player.stats.hp + obj.hp) ;
+                totalheal =  ( _player.stats.Maxhp + obj.hp)-(_player.stats.hp + obj.hp) ;
                 _player.stats.hp += totalheal;
                 
             }
@@ -237,7 +251,6 @@ public class PlayerBase : MonoBehaviour
                 buff.turn = obj.effect.turn;
                 _player.buffs.Add(buff);
             }
-            hpObj.value = _player.stats.hp;
             if (totalheal > 0)
             {
                 setPopup(totalheal,Color.green);   
@@ -249,7 +262,11 @@ public class PlayerBase : MonoBehaviour
             }
             GManager.Instance.Logger($"{obj.ID}を使用します");
             _inventory.RemoveItem(_index);
-
+            hpObj.maxValue = _player.stats.Maxhp;
+            hpObj.value = _player.stats.hp;
+            hungryObj.maxValue = _player.Maxhungry;
+            hungryObj.value = _player.hungry;
+            
         }   
         
     }
@@ -266,6 +283,8 @@ public class PlayerBase : MonoBehaviour
     {
        ItemExpire();
        buffExpire();
+       useHungry(0.1f);
+
        GManager.Instance._turnBase = GManager.TurnBase.Monster_Turn;
     }
 
