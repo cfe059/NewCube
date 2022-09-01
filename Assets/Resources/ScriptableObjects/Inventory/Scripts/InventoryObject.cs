@@ -11,13 +11,20 @@ using UnityEditor;
 #endif
 public class InventoryObject : ScriptableObject
 {
+    [SerializeField]
+    DisplayInventory _displayInventory;
     public string savePath = "";
     public Inventory Container;
 
 
     public void RemoveItem(int _index)
     {
+        
         Container.Items.RemoveAt(_index);
+        _displayInventory = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
+        _displayInventory.UpdateDisplay_2();
+
+        //_displayInventory
     }
     public void AddItem(ItemObject item,int amount)
     {

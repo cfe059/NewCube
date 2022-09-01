@@ -12,18 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13826c81f6d324e558bbe78ca210fa45, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  _displayInventory: {fileID: 0}
   savePath: /save.data
   Container:
     Items:
     - ID: 40010
       item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
-      amount: 0
+      amount: 1
       expire_turn: 0
     - ID: 40010
       item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
-      amount: 0
+      amount: 1
       expire_turn: 0
-    - ID: 40010
-      item: {fileID: 11400000, guid: 3017c63354c294d7fb6930d0010d9a0a, type: 2}
-      amount: 0
+    - ID: 40006
+      item: {fileID: 11400000, guid: a6ea98009ccea4deb8dbe64ff206d6ed, type: 2}
+      amount: 1
+      expire_turn: 0
+    - ID: 40011
+      item: {fileID: 11400000, guid: aca930fdab97846d8b0bbc803c96f420, type: 2}
+      amount: 1
+      expire_turn: 0
+    - ID: 20005
+      item: {fileID: 11400000, guid: b89721826dde24555860101c2dfda74a, type: 2}
+      amount: 1
       expire_turn: 0

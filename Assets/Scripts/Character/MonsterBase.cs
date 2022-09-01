@@ -52,7 +52,8 @@ public class MonsterBase : MonoBehaviour
         if (other.gameObject.CompareTag("Node"))
         {
             node = other.gameObject.GetComponent<nodeBase>();
-        }    }
+        }    
+    }
 
 
     void DamagePopup(float dmg)

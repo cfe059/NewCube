@@ -73,12 +73,15 @@ public class ItemPopup : MonoBehaviour
     {
         GameObject.FindWithTag("Player").GetComponent<PlayerBase>().EquipItem(Resources.Load<Equipment_Obj>($"Items/Data/{itemData.ID}"),_ItemDataClick);
         _ItemDataClick.isEquip = true;
+        _ItemDataClick.edit_text("E");
         Destroy(this.gameObject);
     } 
     public void unEquipItem()
     {
         GameObject.FindWithTag("Player").GetComponent<PlayerBase>().EquipItem(Resources.Load<Equipment_Obj>($"Items/Data/{itemData.ID}"),_ItemDataClick,true);
         _ItemDataClick.isEquip = false;
+        _ItemDataClick.edit_text(" ");
+
         Destroy(this.gameObject);
     }
 }

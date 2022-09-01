@@ -1,0 +1,45 @@
+{
+    "Level": 1,
+    "exp": 0,
+    "stats": {
+        "Maxhp": 20.0,
+        "hp": 20.0,
+        "atk": 4.0,
+        "def": 2.0,
+        "critical_rate": 0.0,
+        "critical_damage": 0.0,
+        "evasions": 0.0
+    },
+    "Equipment": {
+        "weaponID": 0,
+        "weapon": {
+            "instanceID": 0
+        },
+        "weaponEarray": 0,
+        "weaponE": {
+            "instanceID": 0
+        },
+        "armorID": 0,
+        "Armor": {
+            "instanceID": 0
+        },
+        "armorEarray": 0,
+        "ArmorE": {
+            "instanceID": 0
+        }
+    },
+    "buffs": [],
+    "hungry": 99.50000762939453,
+    "Maxhungry": 100.0,
+    "golds": 0.0,
+    "_PlayerVector3": {
+        "x": -4.76837158203125e-7,
+        "y": 2.7500007152557375,
+        "z": -10.0
+    },
+    "_PlayerRotate": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    }
+}

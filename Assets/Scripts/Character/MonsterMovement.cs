@@ -21,7 +21,8 @@ public class MonsterMovement : MonoBehaviour
     private Vector3 now;
     [SerializeField]
     public bool isMoving;
-    
+
+
     [SerializeField] private string Player_Near;
     public bool justMove;
     public bool canAttack;
@@ -245,6 +246,9 @@ public class MonsterMovement : MonoBehaviour
         
         if (target != Vector3.zero)
         {
+            GManager.Instance.WorldData
+                .WorldGens[Convert.ToInt32(GetComponent<MonsterBase>().node.gameObject.transform.parent.parent.name)]
+                .Enemies[Convert.ToInt32(GetComponent<MonsterBase>().node.gameObject.transform.parent.name)] = "";
             _characterState = PlayerController.CharacterState.Walk;
             isMoving = true;
             LookAtWhenWalk(s_direction);
@@ -259,11 +263,16 @@ public class MonsterMovement : MonoBehaviour
                     _characterState = PlayerController.CharacterState.Idle;
                     GManager.Instance.MonsterMove = false;
                     GManager.Instance.MonsterMove_Turn += 1;
+//                    Debug.Log(GetComponent<MonsterBase>().node.gameObject.transform.parent.parent.name);
+                    GManager.Instance.WorldData.WorldGens[Convert.ToInt32(GetComponent<MonsterBase>().node.gameObject.transform.parent.parent.name)]
+                            .Enemies[Convert.ToInt32(GetComponent<MonsterBase>().node.gameObject.transform.parent.name)] =
+                        name.Replace("(Clone)", "").Trim();
                     justMove = true;
                 })
                 .Play();
         }
     }
+    
     public void sendMove(string direction)
     {
         switch (direction)
@@ -319,6 +328,9 @@ public class MonsterMovement : MonoBehaviour
                 break;
         }
     }
+
+    
+
     void OnDrawGizmosSelected()
     {
         Vector3 scale = new Vector3(1, 1, 1);

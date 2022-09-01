@@ -1,14 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BagOpen : MonoBehaviour
 {
     // Start is called before the first frame updateublip
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject log;
+    [SerializeField] private Button _bag;
     private bool open;
+
+    private void Start()
+    {
+        _bag = GetComponent<Button>();
+    }
+
+    public void FixedUpdate()
+    {
+        if (GManager.Instance._turnBase == GManager.TurnBase.Player_Turn)
+        {
+            _bag.interactable = true;
+        }
+        else if(_bag.interactable)
+        {
+            _bag.interactable = false;
+            if (open)
+            {
+                Bag_Click();
+            }
+        }
+    }
     /// <summary>
     /// カバンクリックされる時のアニメション
     /// </summary>

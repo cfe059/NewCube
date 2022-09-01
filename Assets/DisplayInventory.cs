@@ -16,6 +16,16 @@ public class DisplayInventory : MonoBehaviour
     public int Y_SPACE_BETWEEN_ITEM;
     public List<GameObject> Frames;
     Dictionary<InventorySlot,GameObject> itemDisplay = new Dictionary<InventorySlot, GameObject>();
+    [SerializeField] private List<GameObject> Display;
+    public List<GameObject> _display {
+        set {
+            Display = value;
+        }
+        get
+        {
+            return Display;
+        }
+    }
 
     private void Start()
     {
@@ -40,12 +50,38 @@ public class DisplayInventory : MonoBehaviour
         UpdateDisplay();
     }
 
-    void UpdateDisplay()
+    public void UpdateDisplay_2()
+    {
+        foreach (var obj in Display)
+        {
+            Destroy(obj);
+        }
+
+        Display = new List<GameObject>();
+        for (int i = 0; i < InventoryObject.Container.Items.Count; i++)
+        {
+            if (itemDisplay.ContainsKey(InventoryObject.Container.Items[i]))
+            {
+                this.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+                var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
+                obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
+                obj.GetComponent<itemClick>()._index = i;
+//                obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
+                Display.Add(obj);
+                obj.GetComponent<itemClick>()._index = i;
+
+                this.GetComponent<RectTransform>().pivot = new Vector2(1f, 0.5f);
+
+            }
+        }
+    }
+    public void UpdateDisplay()
     {
         for (int i = 0; i < InventoryObject.Container.Items.Count; i++)
         {
             if(itemDisplay.ContainsKey(InventoryObject.Container.Items[i]))
             {
+
                 // if ( itemDisplay[InventoryObject.Container.Items[i]].GetComponent<itemClick>().isEquip)
                 // {
                 //     itemDisplay[InventoryObject.Container.Items[i]].GetComponentInChildren<TextMeshProUGUI>().text = "E";
@@ -61,12 +97,16 @@ public class DisplayInventory : MonoBehaviour
             }
             else
             {
+                
                 this.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
                 var obj = Instantiate(InventoryObject.Container.Items[i].item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponent<itemClick>()._index = i;
 //                obj.GetComponentInChildren<TextMeshProUGUI>().text = InventoryObject.Container.Items[i].amount.ToString("n0");
                 itemDisplay.Add(InventoryObject.Container.Items[i], obj);
+                Display.Add(obj);
+                obj.GetComponent<itemClick>()._index = i;
+
                 this.GetComponent<RectTransform>().pivot = new Vector2(1f, 0.5f);
 
             }
@@ -84,8 +124,10 @@ public class DisplayInventory : MonoBehaviour
 
             var obj = Instantiate(item.item.itemPrefab,Vector3.zero, Quaternion.identity,transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(count);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = item.amount.ToString("n0");
+            //obj.GetComponentInChildren<TextMeshProUGUI>().text = item.amount.ToString("n0");
             itemDisplay.Add(item,obj);
+            Display.Add(obj);
+            obj.GetComponent<itemClick>()._index = count;
             count++;
             this.GetComponent<RectTransform>().pivot = new Vector2(1f, 0.5f);
 

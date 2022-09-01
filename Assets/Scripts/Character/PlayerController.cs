@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour
         target = direction;
         if (target != Vector3.zero)
         {
+            GetComponent<PlayerBase>().useHungry(0.1f);
+
             _playerState = CharacterState.Walk;
             isMoving = true;
             GManager.Instance.Change_TurnBase(GManager.TurnBase.Player_Moving);
@@ -111,6 +113,8 @@ public class PlayerController : MonoBehaviour
                 }).Play();
         }
     }
+
+    
     void OverLapBox()
     {
         Vector3 scale = new Vector3(1, 2, 1);
@@ -144,6 +148,7 @@ public class PlayerController : MonoBehaviour
     {
         //yield return new WaitUntil(() => GManager.Instance._turnBase == GManager.TurnBase.Player_Moving);
         Debug.Log(s_direction);
+        GetComponent<PlayerBase>().useHungry(0.1f);
         LookAtWhenWalk(s_direction);
         _playerState = CharacterState.Attack;
         _animator.SetTrigger("Attack");

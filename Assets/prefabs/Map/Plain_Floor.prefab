@@ -51,3 +51,4 @@ MonoBehaviour:
   - {fileID: 4016349104236908802, guid: 5ac363dd8389046d2a500d945edf8e81, type: 3}
   Debuff_Floor:
   - {fileID: 4338607873535194296, guid: 8fd9ee03393fe4aa2bad8ce41e0b5402, type: 3}
+  normal_Object: []

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class itemClick : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
     // Start is called before the first frame update
     [SerializeField]
      private itemData_Object Itemdata;
+     
+
     
     private void Start()
     {
@@ -24,6 +27,11 @@ public class itemClick : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
 
     }
 
+    public void edit_text(string st)
+    {
+        TextMeshProUGUI text = GetComponentInChildren<TextMeshProUGUI>();
+        text.text = st;
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Itemdata._ItemType == ItemType.Weapon || Itemdata._ItemType == ItemType.Armor ||Itemdata._ItemType == ItemType.Herb || Itemdata._ItemType == ItemType.Food  )

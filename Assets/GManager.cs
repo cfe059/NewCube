@@ -31,7 +31,8 @@ public class GManager : MonoBehaviour
     [SerializeField]
     private GameObject _days;
     private List<string[]> _csvSpawn = new List<string[]>();
-    
+    public World_Data WorldData = new World_Data();
+
     [SerializeField] private GameObject bgDay;
     [SerializeField] private GameObject bgNight;
     [SerializeField] public List<LevelMaster> _levelMaster;
@@ -63,6 +64,7 @@ public class GManager : MonoBehaviour
         RandomDataFoods();
         RandomDataHerbs();
         RandomDataEquipMent();
+        GetComponent<ItemNameRandomJson>().SaveAllItem();
     }
 
     void RandomDataEquipMent()
@@ -253,6 +255,11 @@ public class GManager : MonoBehaviour
     }
 }
 
+[Serializable]
+public class World_Gen_Data
+{
+    
+}
 [Serializable]
 public class canSpawn
 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class PlayerBase : MonoBehaviour
     private Player _player;
     public InventoryObject _inventory;
     private ItemEquipment _standItemEquipment;
+    private GameObject _standNode;
     [SerializeField] private GameObject dialogPickup;
     [SerializeField] private GameObject dialogMove;
     [SerializeField] private GameObject gold;
@@ -21,6 +23,15 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private Slider hungryObj;
     [SerializeField] private Slider expObj;
     [SerializeField] private GameObject bag;
+
+    public Player _PLayerData
+    {
+        get
+        {
+            return _player;
+        }
+    }
+
     private void Start()
     {
         InitialPlayer();
@@ -35,7 +46,78 @@ public class PlayerBase : MonoBehaviour
         GManager.Instance.ChangeLevel(_player.Level);
     }
 
+    void SavePlayer()
+    {
+        
+        // string json_player = JsonUtility.ToJson(_player, true);
+        // string json_inventory = JsonUtility.ToJson(_inventory);
+        // string filePath = Application.dataPath + "/Resources/Json/player.json";
+        //
+        // StreamWriter streamWriter = new StreamWriter(filePath);
+        // streamWriter.Write(json_player); 
+        // streamWriter.Flush ();
+        // streamWriter.Close ();
+    }
 
+    void PlayerOverrite(Player data)
+    {
+        _player.buffs = data.buffs;
+        _player.exp = data.exp;
+        _player.hungry = data.hungry;
+        _player.Level = data.Level;
+        _player.stats = data.stats;
+        _player.Level = data.Level;
+        _player.golds = data.golds;
+        _player.Maxhungry = data.Maxhungry;
+        
+        
+    }
+
+    public void LoadInventory(Inventory data)
+    {
+      //  _inventory.Container = new Inventory();
+        _inventory.Container = data;
+        var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
+        
+    
+
+        foreach (var obj in display._display)
+        {
+            Destroy(obj);
+        }
+
+        display._display = new List<GameObject>();
+        display.UpdateDisplay();
+    }
+    
+    public void LoadData(Player _data)
+    {
+
+      //  _player = _data;
+        gameObject.transform.position =
+            new Vector3(_data._PlayerVector3.x, _data._PlayerVector3.y, _data._PlayerVector3.z);
+        gameObject.transform.eulerAngles = new Vector3(_data._PlayerRotate.x, _data._PlayerRotate.y, _data._PlayerRotate.z);
+        
+        //Equipment
+        _player.Equipment = new Equipment();
+        var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
+        Debug.Log(display._display.Count);
+        if (_data.Equipment.weaponEarray != -1)
+        {
+            
+            EquipItem(Resources.Load<Equipment_Obj>($"Items/Data/{_data.Equipment.weaponID}"),display._display[_data.Equipment.weaponEarray].GetComponent<itemClick>());
+        }
+
+        if (_data.Equipment.armorEarray != -1)
+        {
+            var obj_e = display._display[_data.Equipment.armorEarray].GetComponent<itemClick>();
+            EquipItem(Resources.Load<Equipment_Obj>($"Items/Data/{_data.Equipment.armorID}"),obj_e);
+            
+
+        }
+        PlayerOverrite(_data);
+        //_player = _data;
+    }
     void InitialPlayer()
     {
         List<StatusMaster> stats =  GManager.Instance.GetComponent<CSVReader>()._StatusData;
@@ -58,11 +140,13 @@ public class PlayerBase : MonoBehaviour
         {
             if (_standItemEquipment != null &&  (_inventory.Container.Items.Count < 9))
             {
-
+                
                 _inventory.AddItem(_standItemEquipment.item, 1);
                 GManager.Instance.Logger($"{_standItemEquipment.GetComponent<ItemEquipment>().item.itemName}を発見！鞄にしまった。");
                 P_TurnChange();
                 moveToBag(_standItemEquipment.gameObject);
+                GManager.Instance.WorldData.WorldGens[Convert.ToInt32(_standNode.transform.parent.name)]
+                    .Items[Convert.ToInt32(_standNode.name)] = "";
                 //Destroy(stand_item.gameObject);
             }
             else if( _inventory.Container.Items.Count >= 9)
@@ -82,7 +166,7 @@ public class PlayerBase : MonoBehaviour
 
 
     }
-
+    
     public void getExp(int exp)
     {
         _player.exp += exp;
@@ -124,11 +208,13 @@ public class PlayerBase : MonoBehaviour
         return false;
     }
 
+    
     public void EquipItem(Equipment_Obj obj,itemClick obj_e,bool unequip = false)
     {
      
         if (obj._ItemType == ItemType.Weapon)
         {
+            
             if (unequip)
             {
                 _player.Equipment.weapon = null;
@@ -136,17 +222,23 @@ public class PlayerBase : MonoBehaviour
                 {
                     _player.Equipment.weaponE.isEquip = false;
                     _player.Equipment.weaponE = null;
+                    _player.Equipment.weaponEarray = -1;
+                    _player.Equipment.weaponID = -1;
                 }
 
                 return;
             }
+            _player.Equipment.weaponID = obj.ID;
+        
             _player.Equipment.weapon = obj;
             if (_player.Equipment.weaponE != null)
             {
                 _player.Equipment.weaponE.isEquip = false;
             }
-
+            _player.Equipment.weaponEarray = obj_e._index;
             _player.Equipment.weaponE = obj_e;
+            obj_e.isEquip = true;
+            obj_e.edit_text("E");
         }else if (obj._ItemType == ItemType.Armor)
         {
             if (unequip)
@@ -156,16 +248,23 @@ public class PlayerBase : MonoBehaviour
                 {
                     _player.Equipment.ArmorE.isEquip = false;
                     _player.Equipment.ArmorE = null;
+                    _player.Equipment.armorEarray = -1;
+                    _player.Equipment.armorID = -1;
                 }
 
                 return;
             }
+            
+            _player.Equipment.armorID = obj.ID;
             _player.Equipment.Armor = obj;
+            
             if (_player.Equipment.ArmorE != null)
             {
                 _player.Equipment.ArmorE.isEquip = false;
             }
-
+            _player.Equipment.armorEarray = obj_e._index;
+            obj_e.isEquip = true;
+            obj_e.edit_text("E");
             _player.Equipment.ArmorE = obj_e;
         }
         
@@ -283,8 +382,10 @@ public class PlayerBase : MonoBehaviour
     {
        ItemExpire();
        buffExpire();
-       useHungry(0.1f);
-
+       _player._PlayerVector3 = new newVector3(gameObject.transform.position.x,gameObject.transform.position.y,gameObject.transform.position.z);
+       _player._PlayerRotate = new newVector3(gameObject.transform.eulerAngles.x,gameObject.transform.eulerAngles.y,gameObject.transform.eulerAngles.z);
+       SavePlayer();
+       
        GManager.Instance._turnBase = GManager.TurnBase.Monster_Turn;
     }
 
@@ -322,6 +423,7 @@ public class PlayerBase : MonoBehaviour
         gold.GetComponent<TextMeshProUGUI>().text = $"Golds : {_player.golds}";
     }
 
+  
     int MoneyUpdate()
     {
         
@@ -359,6 +461,11 @@ public class PlayerBase : MonoBehaviour
                 //  _inventory.AddItem(item.item,1);
                 //  Destroy(other.gameObject);
             }
+        }
+
+        if (other.gameObject.tag == "Node")
+        {
+            _standNode = other.gameObject.transform.parent.gameObject;
         }
     }
 
@@ -433,7 +540,9 @@ public class Player
     public float hungry;
     public float Maxhungry;
     public float golds;
- 
+    public newVector3 _PlayerVector3;
+    public newVector3 _PlayerRotate;
+    
 }
 [Serializable]
 public class Character_Stats
@@ -462,9 +571,14 @@ public class PlayerBuff
 [Serializable]
 public class Equipment
 {
+    public int weaponID = -1;
     public Equipment_Obj weapon;
+    public int weaponEarray = -1;
     public itemClick weaponE;
+    public int armorID = -1;
     public Equipment_Obj Armor;
+    public int armorEarray =-1;
+
     public itemClick ArmorE;
 
     
@@ -502,6 +616,17 @@ public class Item_System
     
 }
 
+[Serializable]
+public class newVector3
+{
+    public float x, y, z;
+    public newVector3(float _x,float _y, float _z)
+    {
+        x = _x;
+        y = _y;
+        z = _z;
+    }
+}
 
 [Serializable]
 public class Stats

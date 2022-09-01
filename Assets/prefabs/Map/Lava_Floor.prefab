@@ -52,3 +52,4 @@ MonoBehaviour:
   Debuff_Floor:
   - {fileID: 5021915605341979479, guid: ab0ea07fc221e41238837213d33c7c82, type: 3}
   - {fileID: 6576742908496053289, guid: bc180153e32dc4faaa3dcdd7811ab15d, type: 3}
+  normal_Object: []

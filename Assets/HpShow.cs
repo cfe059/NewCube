@@ -12,6 +12,7 @@ public class HpShow : MonoBehaviour
     public void ChangeTextHp()
     {
         Slider _slider = GetComponent<Slider>();
-        _hpText.text = $"{_slider.value}/{_slider.maxValue}";
+    
+        _hpText.text = $"{_slider.value.ToString("F0")}/{_slider.maxValue}";
     }
 }
