@@ -48,7 +48,7 @@ public class PlayerBase : MonoBehaviour
 
     void SavePlayer()
     {
-        
+        //
         // string json_player = JsonUtility.ToJson(_player, true);
         // string json_inventory = JsonUtility.ToJson(_inventory);
         // string filePath = Application.dataPath + "/Resources/Json/player.json";

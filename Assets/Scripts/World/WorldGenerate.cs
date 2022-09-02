@@ -59,6 +59,58 @@ public class WorldGenerate : MonoBehaviour
        // PlayfabManager.SaveWorld(WorldData);
     }
 
+    GameObject FindClosestObject(GameObject gameObject)
+    {
+        Transform tmin = null;
+        int mainDistArray = -1;
+        float mint = Mathf.Infinity;
+        Vector3 currentPos = gameObject.transform.position;
+        foreach (var nodeActive in _nodeActives)
+        {
+            float dist = Vector3.Distance(nodeActive.transform.position, currentPos);
+            if (dist < mint)
+            {
+                mainDistArray = Convert.ToInt32(nodeActive.gameObject.name);
+                mint = dist;
+            }
+        }
+        mint = Mathf.Infinity;
+        foreach (var node in _nodeActives[mainDistArray].nodes)
+        {
+            if (node != null)
+            {
+                float dist = Vector3.Distance(node.transform.position, currentPos);
+                if (dist < mint)
+                {
+                    tmin = node.transform;
+                    mint = dist;
+                }
+            }
+        }
+
+        return tmin.gameObject;
+
+    }
+    public void DebugGenerateWorld()
+    {
+        _DestoryAllObj();
+        foreach (var node in _nodeActives)
+        {
+            node.resetAllNode();
+
+        }
+        
+        GameObject p = GameObject.Find("Player");
+        nodeBase n = FindClosestObject(p).GetComponentInChildren<nodeBase>();
+        n._nodeStatus = nodeBase.nodeStatus.Player;
+        foreach (var node in _nodeActives)
+        {
+            RandomWorld(node);
+        }
+
+        
+        
+    }
     public void _DestoryAllObj()
     {
         for (int i = 0; i < _nodeActives.Count; i++)

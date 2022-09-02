@@ -47,7 +47,6 @@ public class PlayfabManager : MonoBehaviour
             if (r.Data != null && r.Data.ContainsKey("Inventory"))
             {
                 var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
-                Debug.Log(display._display.Count);
                 _player.LoadInventory(JsonUtility.FromJson<Inventory>(r.Data["Inventory"].Value));
                 Debug.Log(display._display.Count);
 
@@ -55,11 +54,9 @@ public class PlayfabManager : MonoBehaviour
             if (r.Data != null && r.Data.ContainsKey("PlayerInfo"))
             {
                 var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
-                Debug.Log(display._display.Count);
 
                 //_player.LoadData(JsonConvert.DeserializeObject<Player>(r.Data["PlayerInfo"].Value));
                 _player.LoadData(JsonUtility.FromJson<Player>(r.Data["PlayerInfo"].Value));
-                Debug.Log(display._display.Count);
 
                 
             }
@@ -78,13 +75,13 @@ public class PlayfabManager : MonoBehaviour
         WorldRotate rotate = new WorldRotate(_worldData.gameObject.transform.eulerAngles.x
             ,_worldData.gameObject.transform.eulerAngles.y,
             _worldData.gameObject.transform.eulerAngles.z);
-        var World = JsonConvert.SerializeObject(jsonData);// Get World Data to Json
-        var World_rotate = JsonConvert.SerializeObject(rotate);// Get World rotate to json
+        var World = JsonUtility.ToJson(jsonData);// Get World Data to Json
+        var World_rotate = JsonUtility.ToJson(rotate);// Get World rotate to json
         var _playerData =  JsonUtility.ToJson(_player._PLayerData); //Get PlayerData to Json
 
         var _player_inventory = JsonUtility.ToJson(_player._inventory.Container);
         Debug.Log(_player_inventory);
-        var request = new UpdateUserDataRequest
+        var request = new UpdateUserDataRequest　//data post
         {
             Data = new Dictionary<string, string>
             {
@@ -92,6 +89,7 @@ public class PlayfabManager : MonoBehaviour
                 {"World Rotate", World_rotate},
                 {"PlayerInfo",_playerData},
                 {"Inventory",_player_inventory},
+                
             }
             
         };

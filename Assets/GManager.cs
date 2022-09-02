@@ -46,7 +46,15 @@ public class GManager : MonoBehaviour
     
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         canSpawnItem();
         CSV_RName();
         RandomData();
