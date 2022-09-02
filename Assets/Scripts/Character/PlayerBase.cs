@@ -24,6 +24,16 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private Slider expObj;
     [SerializeField] private GameObject bag;
 
+    public int _standNodeIndex
+    {
+        get { return Convert.ToInt32(_standNode.transform.name); }
+
+    }
+    public int standFace
+    {
+        get { return Convert.ToInt32(_standNode.transform.parent.name); }
+    }
+
     public Player _PLayerData
     {
         get

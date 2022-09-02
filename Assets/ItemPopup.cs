@@ -18,6 +18,7 @@ public class ItemPopup : MonoBehaviour
     public GameObject UnEquipButton;
     public GameObject FoodButton;
     public GameObject HerbButton;
+    public GameObject DropButton;
     private void Start()
     {
         EquipButton.SetActive(false);
@@ -83,5 +84,18 @@ public class ItemPopup : MonoBehaviour
         _ItemDataClick.edit_text(" ");
 
         Destroy(this.gameObject);
+    }
+
+    public void DropItem()
+    {
+        GameObject item = Resources.Load<GameObject>($"Items/Prefabs/{itemData.ID}");
+        PlayerBase playerBase = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
+        GameObject world = GameObject.FindWithTag("World");
+        GameObject obj = Instantiate(item,world.GetComponent<WorldGenerate>()._nodeActives[playerBase.standFace].parentItems.transform);
+        obj.transform.position = world.GetComponent<WorldGenerate>()._nodeActives[playerBase.standFace].nodes[playerBase._standNodeIndex].transform.position;
+        playerBase._inventory.RemoveItem(_ItemDataClick._index);
+        Destroy(_ItemDataClick.GameObject());
+        Destroy(this.gameObject);
+        
     }
 }
