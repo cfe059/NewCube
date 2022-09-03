@@ -25,6 +25,15 @@ public class ItemPopup : MonoBehaviour
         UnEquipButton.SetActive(false);
         FoodButton.SetActive(false);
         HerbButton.SetActive(false);
+        if (_ItemDataClick.isEquip)
+        {
+            DropButton.SetActive(false);
+        }
+        else
+        {
+            DropButton.SetActive(true);
+
+        }
         if ((itemData._ItemType == ItemType.Armor || itemData._ItemType == ItemType.Weapon) && !_ItemDataClick.isEquip)
         {
             EquipButton.SetActive(true);

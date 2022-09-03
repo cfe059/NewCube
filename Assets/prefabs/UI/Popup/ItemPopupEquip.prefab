@@ -1390,7 +1390,7 @@ MonoBehaviour:
   UnEquipButton: {fileID: 3836386240699717635}
   FoodButton: {fileID: 648821876969755219}
   HerbButton: {fileID: 1205214465605320493}
-  DropButton: {fileID: 0}
+  DropButton: {fileID: 225120407413639533}
 --- !u!1 &7271457654110445958
 GameObject:
   m_ObjectHideFlags: 0
