@@ -58,7 +58,7 @@ public class PlayerBase : MonoBehaviour
 
     void SavePlayer()
     {
-        //
+        
         // string json_player = JsonUtility.ToJson(_player, true);
         // string json_inventory = JsonUtility.ToJson(_inventory);
         // string filePath = Application.dataPath + "/Resources/Json/player.json";
@@ -85,17 +85,27 @@ public class PlayerBase : MonoBehaviour
 
     public void LoadInventory(Inventory data)
     {
-      //  _inventory.Container = new Inventory();
-        _inventory.Container = data;
+        Debug.Log(data.Items.Count);
+        _inventory.Container = new Inventory();
+        for (int i = 0; i < data.Items.Count; i++)
+        {
+            _inventory.Container.Items.Add(new InventorySlot( 
+                data.Items[i].ID,
+                Resources.Load<ItemObject>($"ScriptableObjects/Items/Obj/{data.Items[i].ID}"),
+                data.Items[i].amount,
+                data.Items[i].expire_turn
+                ));
+        }
+        //_inventory.Container = data;
         var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
         
-    
-
+        
+        
         foreach (var obj in display._display)
         {
             Destroy(obj);
         }
-
+        
         display._display = new List<GameObject>();
         display.UpdateDisplay();
     }

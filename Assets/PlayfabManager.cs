@@ -47,17 +47,18 @@ public class PlayfabManager : MonoBehaviour
             if (r.Data != null && r.Data.ContainsKey("Inventory"))
             {
                 var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
+              //  Debug.Log(display._display.Count);
+               // Debug.Log(JsonUtility.FromJson<Inventory>(r.Data["Inventory"].Value).Items.Count);
                 _player.LoadInventory(JsonUtility.FromJson<Inventory>(r.Data["Inventory"].Value));
-                Debug.Log(display._display.Count);
-
+            
             }
             if (r.Data != null && r.Data.ContainsKey("PlayerInfo"))
             {
                 var display = GameObject.Find("InventorySystem").GetComponent<DisplayInventory>();
-
+            
                 //_player.LoadData(JsonConvert.DeserializeObject<Player>(r.Data["PlayerInfo"].Value));
                 _player.LoadData(JsonUtility.FromJson<Player>(r.Data["PlayerInfo"].Value));
-
+            
                 
             }
 
@@ -78,9 +79,7 @@ public class PlayfabManager : MonoBehaviour
         var World = JsonUtility.ToJson(jsonData);// Get World Data to Json
         var World_rotate = JsonUtility.ToJson(rotate);// Get World rotate to json
         var _playerData =  JsonUtility.ToJson(_player._PLayerData); //Get PlayerData to Json
-
-        var _player_inventory = JsonUtility.ToJson(_player._inventory.Container);
-        Debug.Log(_player_inventory);
+        var _player_inventory = JsonUtility.ToJson(_player._inventory.Container); // get inventory to json
         var request = new UpdateUserDataRequest　//data post
         {
             Data = new Dictionary<string, string>

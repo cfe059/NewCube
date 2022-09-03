@@ -88,9 +88,19 @@ public class ItemPopup : MonoBehaviour
 
     public void DropItem()
     {
-        GameObject item = Resources.Load<GameObject>($"Items/Prefabs/{itemData.ID}");
         PlayerBase playerBase = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
         GameObject world = GameObject.FindWithTag("World");
+
+        if (GManager.Instance.WorldData.WorldGens[playerBase.standFace].Items[playerBase._standNodeIndex] != "")
+        {
+            Destroy(this.gameObject);
+            GManager.Instance.Logger("cant drop bcuz at your feet have item");
+            return;
+            
+        }
+
+        GManager.Instance.WorldData.WorldGens[playerBase.standFace].Items[playerBase._standNodeIndex] = itemData.ID.ToString();
+        GameObject item = Resources.Load<GameObject>($"Items/Prefabs/{itemData.ID}");
         GameObject obj = Instantiate(item,world.GetComponent<WorldGenerate>()._nodeActives[playerBase.standFace].parentItems.transform);
         obj.transform.position = world.GetComponent<WorldGenerate>()._nodeActives[playerBase.standFace].nodes[playerBase._standNodeIndex].transform.position;
         playerBase._inventory.RemoveItem(_ItemDataClick._index);
