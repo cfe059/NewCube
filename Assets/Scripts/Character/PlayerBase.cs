@@ -493,9 +493,12 @@ public class PlayerBase : MonoBehaviour
     {
         GameObject d = Resources.Load<GameObject>("Damage");
         d.GetComponent<DamagePopup>().damage = (int)damage;
+        d.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+
         GameObject i = Instantiate(d);
         i.transform.position = this.transform.position;
         GetComponent<PlayerController>()._playerState = PlayerController.CharacterState.Idle;
+
 
     }
     void setPopup(float number,Color color)

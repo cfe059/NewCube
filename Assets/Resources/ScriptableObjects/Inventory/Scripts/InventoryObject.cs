@@ -107,6 +107,7 @@ public class InventorySlot
     public ItemObject item;
     public int amount;
     public int expire_turn;
+    public bool identified;
     public InventorySlot(int _id,ItemObject item, int amount,int _expireTurn = 0)
     {
         ID = _id;

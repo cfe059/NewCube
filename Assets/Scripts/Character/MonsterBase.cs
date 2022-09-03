@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 
 public class MonsterBase : MonoBehaviour
@@ -60,6 +61,8 @@ public class MonsterBase : MonoBehaviour
     {
         GameObject d = Resources.Load<GameObject>("Damage");
         d.GetComponent<DamagePopup>().damage = (int) dmg;
+        d.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+
         GameObject i = Instantiate(d);
         i.transform.position = this.transform.position;
         GetComponent<MonsterMovement>()._characterState = PlayerController.CharacterState.Idle;
