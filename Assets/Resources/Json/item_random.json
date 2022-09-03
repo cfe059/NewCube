@@ -3,15 +3,6 @@
         {
             "ID": 10001,
             "R_Data": {
-                "ID": 1000006,
-                "RName": "ピカピカセイバー",
-                "Rimg": "item_1006"
-            },
-            "_ItemType": 1
-        },
-        {
-            "ID": 10002,
-            "R_Data": {
                 "ID": 1000002,
                 "RName": "スイカバー",
                 "Rimg": "item_1002"
@@ -19,20 +10,29 @@
             "_ItemType": 1
         },
         {
+            "ID": 10002,
+            "R_Data": {
+                "ID": 1000006,
+                "RName": "ピカピカセイバー",
+                "Rimg": "item_1006"
+            },
+            "_ItemType": 1
+        },
+        {
             "ID": 10003,
             "R_Data": {
-                "ID": 1000003,
-                "RName": "ナイフ",
-                "Rimg": "item_1003"
+                "ID": 1000004,
+                "RName": "田中の刀",
+                "Rimg": "item_1004"
             },
             "_ItemType": 1
         },
         {
             "ID": 10004,
             "R_Data": {
-                "ID": 1000004,
-                "RName": "田中の刀",
-                "Rimg": "item_1004"
+                "ID": 1000003,
+                "RName": "ナイフ",
+                "Rimg": "item_1003"
             },
             "_ItemType": 1
         },
@@ -57,24 +57,6 @@
         {
             "ID": 20001,
             "R_Data": {
-                "ID": 2000002,
-                "RName": "お気に入りのパジャマ",
-                "Rimg": "item_2002"
-            },
-            "_ItemType": 2
-        },
-        {
-            "ID": 20002,
-            "R_Data": {
-                "ID": 2000004,
-                "RName": "水色のローブ",
-                "Rimg": "item_2004"
-            },
-            "_ItemType": 2
-        },
-        {
-            "ID": 20003,
-            "R_Data": {
                 "ID": 2000001,
                 "RName": "UNI〇L〇パーカー",
                 "Rimg": "item_2001"
@@ -82,16 +64,7 @@
             "_ItemType": 2
         },
         {
-            "ID": 20004,
-            "R_Data": {
-                "ID": 2000003,
-                "RName": "赤いローブ",
-                "Rimg": "item_2003"
-            },
-            "_ItemType": 2
-        },
-        {
-            "ID": 20005,
+            "ID": 20002,
             "R_Data": {
                 "ID": 2000005,
                 "RName": "トゲトゲの鎧",
@@ -100,7 +73,16 @@
             "_ItemType": 2
         },
         {
-            "ID": 20006,
+            "ID": 20003,
+            "R_Data": {
+                "ID": 2000002,
+                "RName": "お気に入りのパジャマ",
+                "Rimg": "item_2002"
+            },
+            "_ItemType": 2
+        },
+        {
+            "ID": 20004,
             "R_Data": {
                 "ID": 2000006,
                 "RName": "セクシーな服",
@@ -109,61 +91,25 @@
             "_ItemType": 2
         },
         {
+            "ID": 20005,
+            "R_Data": {
+                "ID": 2000003,
+                "RName": "赤いローブ",
+                "Rimg": "item_2003"
+            },
+            "_ItemType": 2
+        },
+        {
+            "ID": 20006,
+            "R_Data": {
+                "ID": 2000004,
+                "RName": "水色のローブ",
+                "Rimg": "item_2004"
+            },
+            "_ItemType": 2
+        },
+        {
             "ID": 40001,
-            "R_Data": {
-                "ID": 4000004,
-                "RName": "橙色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40002,
-            "R_Data": {
-                "ID": 4000003,
-                "RName": "青色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40003,
-            "R_Data": {
-                "ID": 4000006,
-                "RName": "緋色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40004,
-            "R_Data": {
-                "ID": 4000010,
-                "RName": "白色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40005,
-            "R_Data": {
-                "ID": 4000011,
-                "RName": "灰色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40006,
-            "R_Data": {
-                "ID": 4000001,
-                "RName": "緑色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40007,
             "R_Data": {
                 "ID": 4000007,
                 "RName": "水色の草",
@@ -172,34 +118,25 @@
             "_ItemType": 3
         },
         {
-            "ID": 40008,
+            "ID": 40002,
             "R_Data": {
-                "ID": 4000002,
-                "RName": "赤色の草",
+                "ID": 4000010,
+                "RName": "白色の草",
                 "Rimg": "item_4001"
             },
             "_ItemType": 3
         },
         {
-            "ID": 40009,
+            "ID": 40003,
             "R_Data": {
-                "ID": 4000009,
-                "RName": "桃色の草",
+                "ID": 4000011,
+                "RName": "灰色の草",
                 "Rimg": "item_4001"
             },
             "_ItemType": 3
         },
         {
-            "ID": 40010,
-            "R_Data": {
-                "ID": 4000005,
-                "RName": "紫色の草",
-                "Rimg": "item_4001"
-            },
-            "_ItemType": 3
-        },
-        {
-            "ID": 40011,
+            "ID": 40004,
             "R_Data": {
                 "ID": 4000008,
                 "RName": "黄色の草",
@@ -208,16 +145,70 @@
             "_ItemType": 3
         },
         {
-            "ID": 50001,
+            "ID": 40005,
             "R_Data": {
-                "ID": 5000006,
-                "RName": "破滅のケーキ",
-                "Rimg": "item_5000"
+                "ID": 4000005,
+                "RName": "紫色の草",
+                "Rimg": "item_4001"
             },
-            "_ItemType": 7
+            "_ItemType": 3
         },
         {
-            "ID": 50002,
+            "ID": 40006,
+            "R_Data": {
+                "ID": 4000003,
+                "RName": "青色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 40007,
+            "R_Data": {
+                "ID": 4000006,
+                "RName": "緋色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 40008,
+            "R_Data": {
+                "ID": 4000009,
+                "RName": "桃色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 40009,
+            "R_Data": {
+                "ID": 4000001,
+                "RName": "緑色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 40010,
+            "R_Data": {
+                "ID": 4000002,
+                "RName": "赤色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 40011,
+            "R_Data": {
+                "ID": 4000004,
+                "RName": "橙色の草",
+                "Rimg": "item_4001"
+            },
+            "_ItemType": 3
+        },
+        {
+            "ID": 50001,
             "R_Data": {
                 "ID": 5000002,
                 "RName": "ケーキ",
@@ -226,10 +217,19 @@
             "_ItemType": 7
         },
         {
-            "ID": 50003,
+            "ID": 50002,
             "R_Data": {
                 "ID": 5000001,
                 "RName": "小さいケーキ",
+                "Rimg": "item_5000"
+            },
+            "_ItemType": 7
+        },
+        {
+            "ID": 50003,
+            "R_Data": {
+                "ID": 5000004,
+                "RName": "固めのケーキ",
                 "Rimg": "item_5000"
             },
             "_ItemType": 7
@@ -246,8 +246,8 @@
         {
             "ID": 50005,
             "R_Data": {
-                "ID": 5000004,
-                "RName": "固めのケーキ",
+                "ID": 5000006,
+                "RName": "破滅のケーキ",
                 "Rimg": "item_5000"
             },
             "_ItemType": 7

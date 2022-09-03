@@ -310,7 +310,7 @@ public class PlayerBase : MonoBehaviour
 
             if (totalhungry > 0)
             {
-                setPopup(totalhungry,Color.yellow);
+                //setPopup(totalhungry,Color.yellow);
             }
             GManager.Instance.Logger($"{obj.ID}を使用します");
 
@@ -377,7 +377,7 @@ public class PlayerBase : MonoBehaviour
 
             if (totalhungry > 0)
             {
-                setPopup(totalhungry,Color.yellow);
+               // setPopup(totalhungry,Color.yellow);
             }
             GManager.Instance.Logger($"{obj.ID}を使用します");
             _inventory.RemoveItem(_index);
