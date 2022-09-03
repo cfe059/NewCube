@@ -66,7 +66,7 @@ public class ItemPopup : MonoBehaviour
     }
     public void UseFood()
     {
-        GameObject.FindWithTag("Player").GetComponent<PlayerBase>().useFood(Resources.Load<Food_Obj>($"Items/Data/{itemData.ID}"));
+        GameObject.FindWithTag("Player").GetComponent<PlayerBase>().useFood(Resources.Load<Food_Obj>($"Items/Data/{itemData.ID}"),_ItemDataClick._index);
         Destroy(_ItemDataClick.GameObject());
         Destroy(this.gameObject);
     } 
@@ -90,7 +90,7 @@ public class ItemPopup : MonoBehaviour
     {
         PlayerBase playerBase = GameObject.FindWithTag("Player").GetComponent<PlayerBase>();
         GameObject world = GameObject.FindWithTag("World");
-
+        
         if (GManager.Instance.WorldData.WorldGens[playerBase.standFace].Items[playerBase._standNodeIndex] != "")
         {
             Destroy(this.gameObject);

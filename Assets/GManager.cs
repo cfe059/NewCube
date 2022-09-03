@@ -15,7 +15,7 @@ public class GManager : MonoBehaviour
     // Start is called before the first frame update
     public enum TurnBase
     {
-        Player_Turn,Player_Moving,Monster_Turn,Monster_Moving
+        Player_Turn,Player_Moving,Monster_Turn,Monster_Moving,Player_Death
     }
 
     public GameState _GameState;

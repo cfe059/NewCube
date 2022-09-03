@@ -23,7 +23,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private Slider hungryObj;
     [SerializeField] private Slider expObj;
     [SerializeField] private GameObject bag;
-
+    [SerializeField] private ResultManager _resultManager;
     public int _standNodeIndex
     {
         get { return Convert.ToInt32(_standNode.transform.name); }
@@ -145,8 +145,17 @@ public class PlayerBase : MonoBehaviour
         _player.stats.atk = stats[_player.Level - 1].Atk;
         _player.stats.def = stats[_player.Level - 1].Def;
     }
+   
     private void Update()
     {
+        if (GManager.Instance._turnBase == GManager.TurnBase.Player_Death)
+        {
+            return;
+        }
+        else
+        {
+           
+        }
         if (GManager.Instance._turnBase != GManager.TurnBase.Player_Turn)
         {
             dialogMove.SetActive(false);
@@ -289,7 +298,7 @@ public class PlayerBase : MonoBehaviour
         }
         
     }
-    public void useFood(Food_Obj obj)
+    public void useFood(Food_Obj obj,int _index)
     {
 
         if (obj._ItemType == ItemType.Food)
@@ -313,6 +322,7 @@ public class PlayerBase : MonoBehaviour
                 //setPopup(totalhungry,Color.yellow);
             }
             GManager.Instance.Logger($"{obj.ID}を使用します");
+            _inventory.RemoveItem(_index);
 
             _player.Maxhungry += obj.Maxhungry;
             
@@ -398,6 +408,15 @@ public class PlayerBase : MonoBehaviour
             })
             .Play();
     }
+
+    public void Death()
+    {
+        GManager.Instance._turnBase = GManager.TurnBase.Player_Death;
+        GManager.Instance.Logger("死亡しました");
+        _resultManager.gameObject.SetActive(true);
+        _resultManager.inputDays.text = GManager.Instance._GameState.days.ToString();
+        _resultManager.inputLevel.text = _player.Level.ToString();
+    }
     public void P_TurnChange()
     {
        ItemExpire();
@@ -438,6 +457,15 @@ public class PlayerBase : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (GManager.Instance._turnBase != GManager.TurnBase.Player_Death)
+        {
+            if (_player.stats.hp <= 0)
+            {
+                Death(); 
+            }
+
+            return;
+        }
         _player.golds = MoneyUpdate();
         
         gold.GetComponent<TextMeshProUGUI>().text = $"Golds : {_player.golds}";
